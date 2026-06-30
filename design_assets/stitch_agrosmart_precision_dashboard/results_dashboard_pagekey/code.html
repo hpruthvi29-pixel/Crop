@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriPrecise - Results Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#002204",
+                      "on-surface": "#071e27",
+                      "primary-fixed": "#a3f69c",
+                      "primary-fixed-dim": "#88d982",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#001b3d",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#774c00",
+                      "primary-container": "#2e7d32",
+                      "surface": "#f3faff",
+                      "tertiary-container": "#986200",
+                      "on-primary-fixed-variant": "#005312",
+                      "inverse-on-surface": "#dff4ff",
+                      "outline": "#707a6c",
+                      "surface-container-high": "#d5ecf8",
+                      "on-tertiary-fixed-variant": "#643f00",
+                      "on-secondary-container": "#003670",
+                      "inverse-surface": "#1e333c",
+                      "on-surface-variant": "#40493d",
+                      "on-primary-container": "#cbffc2",
+                      "tertiary-fixed": "#ffddb5",
+                      "surface-container": "#dbf1fe",
+                      "surface-container-highest": "#cfe6f2",
+                      "tertiary-fixed-dim": "#ffb957",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#2a1800",
+                      "inverse-primary": "#88d982",
+                      "background": "#f3faff",
+                      "surface-variant": "#cfe6f2",
+                      "secondary": "#005db7",
+                      "surface-dim": "#c7dde9",
+                      "on-tertiary-container": "#ffeede",
+                      "surface-tint": "#1b6d24",
+                      "secondary-fixed-dim": "#a9c7ff",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#d6e3ff",
+                      "on-background": "#071e27",
+                      "primary": "#0d631b",
+                      "outline-variant": "#bfcaba",
+                      "surface-container-low": "#e6f6ff",
+                      "surface-bright": "#f3faff",
+                      "secondary-container": "#64a1ff",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#00468c",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "24px",
+                      "giant": "64px",
+                      "xs": "4px",
+                      "huge": "48px",
+                      "sm": "8px",
+                      "md": "12px",
+                      "xxl": "32px",
+                      "lg": "16px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      }
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden lg:flex flex-col h-full p-lg gap-md bg-surface-container-low dark:bg-surface-dim docked left-0 w-64 border-r border-outline-variant dark:border-outline shrink-0">
+<div class="mb-xl px-sm">
+<h1 class="text-headline-md font-headline-md font-extrabold text-primary dark:text-primary-fixed">AgriPrecise</h1>
+</div>
+<div class="flex items-center gap-md mb-xl px-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a modern farm manager wearing a light cap and practical outdoor clothing. The lighting is bright and natural, reflecting a sunny day on the farm. The background is slightly blurred but shows lush green fields, emphasizing a data-driven functionalist aesthetic with corporate modern undertones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo2kvd_AgGijC8uM4gBPsWK6SjBeOXZpozCC74nyl0Jh6g5eJ8DTy4SQGI0GiXfwjBaAl-XQWOPvWMR-uGoiS27kl8G2BSas8kJin-PIUvDNFHn3RonPZgOw4GZ8p189pkze7MFWrALmIK3ijVZDD4hhxPHqTGfs07IJ6FjhbLw6Kvjvsx-4mbMksjx9UknqoiCWNlh8eHhhUIu5kZwuDzKpn4riLJJb0YDuC30D_YpQSDT043mYU1wln6cav1qWx8Wc4sDWEhk30"/>
+</div>
+<div>
+<div class="text-body-lg font-body-lg font-semibold text-on-surface">Farm Manager</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">North Plot - Active</div>
+</div>
+</div>
+<div class="flex-grow flex flex-col gap-sm overflow-y-auto">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+<a class="flex items-center gap-md bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-lg px-md py-sm opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span class="text-label-md font-label-md">Soil Lab</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span class="text-label-md font-label-md">Market Intel</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-label-md font-label-md">Seasonal Calendar</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="psychiatry">psychiatry</span>
+<span class="text-label-md font-label-md">Disease ID</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-label-md font-label-md">History</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-sm pt-md border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary rounded-lg py-sm px-md flex items-center justify-center gap-sm hover:bg-surface-tint transition-colors mb-md">
+<span class="material-symbols-outlined">add</span>
+<span class="text-label-md font-label-md">Add New Farm</span>
+</button>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+<span class="text-label-md font-label-md">Alerts</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col h-full overflow-hidden relative">
+<!-- TopAppBar (Mobile & Desktop) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-xxl py-md max-w-full bg-surface dark:bg-inverse-surface shadow-sm shrink-0 lg:hidden">
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">AgriPrecise</h1>
+<div class="flex items-center gap-md text-primary dark:text-inverse-primary">
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container rounded-full p-1" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container rounded-full p-1" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<div class="flex-grow overflow-y-auto p-4 md:p-6 lg:p-8">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-display-lg font-display-lg text-on-surface mb-2">Analysis Results</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">North Plot • Soil Sample #4892</p>
+</div>
+<button class="bg-surface-container text-on-surface px-lg py-sm rounded-lg flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">download</span>
+<span class="text-label-md font-label-md">Export PDF</span>
+</button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Primary Match Card (Spans 8 cols on tablet+) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col relative group">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center h-full">
+<div class="w-full md:w-1/2">
+<div class="inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-3 py-1 rounded-full mb-4">
+<span class="material-symbols-outlined text-sm" data-weight="fill">verified</span>
+<span class="text-label-md font-label-md">Primary Recommendation</span>
+</div>
+<h3 class="text-display-lg font-display-lg text-on-surface mb-2">Cotton</h3>
+<div class="text-headline-lg font-headline-lg text-primary mb-4">94% Match</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6">Current soil profile, historical climate data, and N-P-K balance indicate optimal conditions for a high-yield cotton crop this season.</p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-lg py-md rounded-lg text-label-md font-label-md hover:bg-surface-tint transition-colors w-full md:w-auto">Adopt Plan</button>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-48 md:h-full min-h-[200px] rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover absolute inset-0" data-alt="A highly detailed, close-up photograph of a thriving cotton plant in a field, showcasing fluffy white bolls ready for harvest. The lighting is golden hour, casting a warm, optimistic glow over the crop. The scene embodies a modern agricultural aesthetic, emphasizing health, high yield, and functional precision in a data-driven farming context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd_YwVbPHGhzo3ePYpinYqbd9M7_SEskeibfkvBu2GhGggVMnazqWt4tI_JzfxhyMGNRAZm2QxTzNMFP9N7SidE4lRBXwL8D2Fek0a1zZcI0cVAQ8sT4AJ8q9s_6G_MGFkzZWtiJtml4qClD-Z8AwhrC8jnnTKzjcVL6VLB5Rc_b27W3o6RIai-p7CCuRmp77prkDBtRDeCm2Blr-1y4IWfvyF7vTAda3E2XZbvHnYVFuV6jN8ZKCfk8S2YU2InFE8z2FwvzpJN7s"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+<div class="text-white text-body-sm font-body-sm backdrop-blur-md bg-black/20 px-2 py-1 rounded">Est. Yield: 2.1 bales/acre</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Soil Health Radar (Spans 4 cols) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 flex flex-col relative">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-headline-md font-headline-md text-on-surface">Soil Health</h3>
+<span class="material-symbols-outlined text-secondary" title="Optimal conditions">info</span>
+</div>
+<div class="flex-grow flex items-center justify-center relative min-h-[250px]">
+<canvas id="soilRadarChart"></canvas>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-2 text-center text-body-sm font-body-sm">
+<div class="bg-surface-container p-2 rounded">
+<div class="text-on-surface-variant">pH Level</div>
+<div class="font-bold text-on-surface">6.8 (Ideal)</div>
+</div>
+<div class="bg-surface-container p-2 rounded">
+<div class="text-on-surface-variant">Moisture</div>
+<div class="font-bold text-secondary">42%</div>
+</div>
+</div>
+</div>
+<!-- Fertilizer Schedule Timeline (Spans 8 cols) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-headline-md font-headline-md text-on-surface">Fertilizer Schedule</h3>
+<button class="text-primary hover:bg-surface-container p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">edit_calendar</span>
+</button>
+</div>
+<div class="relative w-full">
+<!-- Timeline Line -->
+<div class="absolute top-1/2 left-0 w-full h-1 bg-surface-container -translate-y-1/2 z-0 rounded-full"></div>
+<!-- Timeline Nodes -->
+<div class="flex justify-between relative z-10 w-full px-4">
+<!-- Week 1 -->
+<div class="flex flex-col items-center group">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center mb-2 shadow-sm border-2 border-surface-container-lowest transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<div class="text-label-md font-label-md text-on-surface text-center">Wk 1</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-center mt-1">Pre-plant<br/>N-P-K</div>
+</div>
+<!-- Week 4 (Active) -->
+<div class="flex flex-col items-center group">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center mb-2 shadow-sm border-2 border-surface-container-lowest ring-4 ring-secondary-container transition-transform group-hover:scale-110">
+<div class="w-3 h-3 bg-on-secondary rounded-full"></div>
+</div>
+<div class="text-label-md font-label-md text-on-surface text-center font-bold">Wk 4</div>
+<div class="text-body-sm font-body-sm text-primary text-center mt-1 font-semibold">Side-dress<br/>Nitrogen</div>
+</div>
+<!-- Week 8 -->
+<div class="flex flex-col items-center group">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center mb-2 shadow-sm border-2 border-surface-container-lowest transition-transform group-hover:scale-110"></div>
+<div class="text-label-md font-label-md text-on-surface-variant text-center">Wk 8</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-center mt-1">Foliar<br/>Potassium</div>
+</div>
+<!-- Week 12 -->
+<div class="flex flex-col items-center group">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center mb-2 shadow-sm border-2 border-surface-container-lowest transition-transform group-hover:scale-110"></div>
+<div class="text-label-md font-label-md text-on-surface-variant text-center">Wk 12</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-center mt-1">Late<br/>Season</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Market Intel Mini Widget (Spans 4 cols) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-headline-md font-headline-md text-on-surface">Market Intel</h3>
+<span class="material-symbols-outlined text-on-surface-variant">trending_up</span>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex justify-between items-center border-b border-surface-container pb-2">
+<div class="text-body-lg font-body-lg text-on-surface">Cotton (ZCE)</div>
+<div class="text-right">
+<div class="text-body-lg font-body-lg font-bold text-on-surface">$84.20</div>
+<div class="text-label-md font-label-md text-primary flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> 1.2%
+                                    </div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="text-body-lg font-body-lg text-on-surface">Soybeans (CBOT)</div>
+<div class="text-right">
+<div class="text-body-lg font-body-lg font-bold text-on-surface">$1,180.50</div>
+<div class="text-label-md font-label-md text-error flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span> 0.4%
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Alternatives Carousel (Spans 12 cols) -->
+<div class="md:col-span-12 mt-4">
+<h3 class="text-headline-md font-headline-md text-on-surface mb-4">Alternative Crop Matches</h3>
+<div class="flex gap-4 overflow-x-auto pb-4 snap-x hide-scrollbar">
+<!-- Alt Card 1 -->
+<div class="min-w-[280px] w-[280px] bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-4 snap-start hover:shadow-md transition-shadow cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="text-body-lg font-body-lg font-bold text-on-surface group-hover:text-primary transition-colors">Soybeans</h4>
+<div class="bg-surface-container text-on-surface px-2 py-1 rounded text-label-md font-label-md">88% Match</div>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full mb-3 overflow-hidden">
+<div class="h-full bg-secondary w-[88%]"></div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">Requires slight pH adjustment. Strong current market demand.</p>
+</div>
+<!-- Alt Card 2 -->
+<div class="min-w-[280px] w-[280px] bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-4 snap-start hover:shadow-md transition-shadow cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="text-body-lg font-body-lg font-bold text-on-surface group-hover:text-primary transition-colors">Sorghum</h4>
+<div class="bg-surface-container text-on-surface px-2 py-1 rounded text-label-md font-label-md">82% Match</div>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full mb-3 overflow-hidden">
+<div class="h-full bg-tertiary w-[82%]"></div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">Excellent drought tolerance based on long-term climate forecast.</p>
+</div>
+<!-- Alt Card 3 -->
+<div class="min-w-[280px] w-[280px] bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-4 snap-start hover:shadow-md transition-shadow cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="text-body-lg font-body-lg font-bold text-on-surface group-hover:text-primary transition-colors">Corn</h4>
+<div class="bg-surface-container text-on-surface px-2 py-1 rounded text-label-md font-label-md">75% Match</div>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full mb-3 overflow-hidden">
+<div class="h-full bg-error w-[75%]"></div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">High nitrogen requirement. Significant fertilizer investment needed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for bottom nav on mobile -->
+<div class="h-24 lg:hidden"></div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg py-md bg-surface dark:bg-inverse-surface shadow-lg rounded-t-xl lg:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="home">home</span>
+<span class="text-label-md font-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-full px-lg py-xs scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="grass">grass</span>
+<span class="text-label-md font-label-md mt-1">Soil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="bar_chart">bar_chart</span>
+<span class="text-label-md font-label-md mt-1">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="notifications">notifications</span>
+<span class="text-label-md font-label-md mt-1">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="agriculture">agriculture</span>
+<span class="text-label-md font-label-md mt-1">Farms</span>
+</a>
+</nav>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('soilRadarChart').getContext('2d');
+            
+            // Tailwind colors from config
+            const primaryColor = '#0d631b';
+            const primaryContainer = '#2e7d32';
+            const surfaceContainerHigh = '#d5ecf8';
+            const onSurface = '#071e27';
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Nitrogen (N)', 'Phosphorus (P)', 'Potassium (K)', 'Organic Matter', 'Micronutrients'],
+                    datasets: [{
+                        label: 'Current Levels',
+                        data: [85, 70, 90, 65, 80],
+                        backgroundColor: 'rgba(13, 99, 27, 0.2)', // primary with opacity
+                        borderColor: primaryColor,
+                        pointBackgroundColor: primaryContainer,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: primaryColor,
+                        borderWidth: 2,
+                    }, {
+                        label: 'Cotton Ideal',
+                        data: [80, 75, 85, 60, 70],
+                        backgroundColor: 'rgba(213, 236, 248, 0.4)', // surface-container-high with opacity
+                        borderColor: '#bfcaba', // outline-variant
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: surfaceContainerHigh
+                            },
+                            grid: {
+                                color: surfaceContainerHigh
+                            },
+                            pointLabels: {
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 11,
+                                    weight: 600
+                                },
+                                color: onSurface
+                            },
+                            ticks: {
+                                display: false, // Hide numeric ticks for cleaner look
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 12
+                                },
+                                usePointStyle: true,
+                                boxWidth: 8
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(7, 30, 39, 0.9)', // on-surface
+                            titleFont: {
+                                family: "'Inter', sans-serif",
+                                size: 13
+                            },
+                            bodyFont: {
+                                family: "'Inter', sans-serif",
+                                size: 12
+                            },
+                            padding: 10,
+                            cornerRadius: 4
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

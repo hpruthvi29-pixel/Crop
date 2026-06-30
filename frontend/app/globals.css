@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0d631b;
+  --color-primary-container: #2e7d32;
+  --color-on-primary-container: #cbffc2;
+  --color-secondary: #005db7;
+  --color-tertiary: #774c00;
+  
+  --color-background: #ffffff;
+  --color-foreground: #071e27;
+  
+  --color-surface: #f3faff;
+  --color-surface-dim: #c7dde9;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #e6f6ff;
+  --color-surface-container: #dbf1fe;
+  --color-surface-container-high: #d5ecf8;
+  --color-surface-container-highest: #cfe6f2;
+  
+  --color-on-surface: #071e27;
+  --color-on-surface-variant: #40493d;
+  
+  --color-outline: #707a6c;
+  --color-outline-variant: #bfcaba;
+  
+  --radius-xl: 1rem;
+  --radius-xxl: 1.5rem;
+}
+
+@layer base {
+  body {
+    background-color: #ffffff;
+    color: #071e27;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #071e27;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f3faff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #bfcaba;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0d631b;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: #ffffff;
+    border: 1px solid #bfcaba;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-glow:hover {
+    box-shadow: 0 10px 30px rgba(13, 99, 27, 0.08);
+    border-color: #0d631b;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Custom NPK Sliders styling */
+.slider-n::-webkit-slider-runnable-track { background: #2e7d32; height: 8px; border-radius: 4px; }
+.slider-p::-webkit-slider-runnable-track { background: #ffb957; height: 8px; border-radius: 4px; }
+.slider-k::-webkit-slider-runnable-track { background: #005db7; height: 8px; border-radius: 4px; }
+
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #707a6c;
+  cursor: pointer;
+  margin-top: -7px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

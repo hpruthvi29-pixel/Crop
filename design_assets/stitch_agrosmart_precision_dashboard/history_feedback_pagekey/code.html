@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriPrecise - History &amp; Feedback</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#002204",
+                      "on-surface": "#071e27",
+                      "primary-fixed": "#a3f69c",
+                      "primary-fixed-dim": "#88d982",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#001b3d",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#774c00",
+                      "primary-container": "#2e7d32",
+                      "surface": "#f3faff",
+                      "tertiary-container": "#986200",
+                      "on-primary-fixed-variant": "#005312",
+                      "inverse-on-surface": "#dff4ff",
+                      "outline": "#707a6c",
+                      "surface-container-high": "#d5ecf8",
+                      "on-tertiary-fixed-variant": "#643f00",
+                      "on-secondary-container": "#003670",
+                      "inverse-surface": "#1e333c",
+                      "on-surface-variant": "#40493d",
+                      "on-primary-container": "#cbffc2",
+                      "tertiary-fixed": "#ffddb5",
+                      "surface-container": "#dbf1fe",
+                      "surface-container-highest": "#cfe6f2",
+                      "tertiary-fixed-dim": "#ffb957",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#2a1800",
+                      "inverse-primary": "#88d982",
+                      "background": "#f3faff",
+                      "surface-variant": "#cfe6f2",
+                      "secondary": "#005db7",
+                      "surface-dim": "#c7dde9",
+                      "on-tertiary-container": "#ffeede",
+                      "surface-tint": "#1b6d24",
+                      "secondary-fixed-dim": "#a9c7ff",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#d6e3ff",
+                      "on-background": "#071e27",
+                      "primary": "#0d631b",
+                      "outline-variant": "#bfcaba",
+                      "surface-container-low": "#e6f6ff",
+                      "surface-bright": "#f3faff",
+                      "secondary-container": "#64a1ff",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#00468c",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "24px",
+                      "giant": "64px",
+                      "xs": "4px",
+                      "huge": "48px",
+                      "sm": "8px",
+                      "md": "12px",
+                      "xxl": "32px",
+                      "lg": "16px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+          .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+          }
+          .material-symbols-outlined.fill {
+             font-variation-settings: 'FILL' 1;
+          }
+      </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden sticky top-0 z-50 flex justify-between items-center w-full px-xxl py-md max-w-full bg-surface dark:bg-inverse-surface shadow-sm">
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">AgriPrecise</div>
+<div class="flex gap-lg">
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container transition-colors p-sm rounded-full cursor-pointer" data-icon="language">language</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container transition-colors p-sm rounded-full cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container transition-colors p-sm rounded-full cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full p-lg gap-md docked left-0 h-screen w-64 border-r border-outline-variant bg-surface-container-low dark:bg-surface-dim fixed">
+<div class="mb-xl px-md">
+<div class="text-headline-md font-headline-md font-extrabold text-primary dark:text-primary-fixed mb-giant">AgriPrecise</div>
+<div class="flex items-center gap-md mb-xl">
+<img alt="User Profile Avatar" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a modern farmer wearing a casual button-down shirt and a cap, standing in front of a subtly blurred background of green agricultural fields under bright daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACbpcAcVY9_WBCplf1CJTB0qXqYF1_I52Kfz3J-k-HbqIDRnvtm76poIV1HSdoldg9bfRhGOK2WaUANbbDinO7VdpOHC3ZalWWfD995EyAxusd3g0BcLOCpSv2GdEZeiOgLHBkDJRvc1ybdxi1V92YkUJLEsGM8Fx6G-Zs-DmjVA1FFR7z_rfW2L3vC6OZb8VNlfvzZ0xZ9owTx_uve_diYpk8Y0dXpqmqKJDQh60YsrTGB7DfwVxndXtmQrNyZIIbTMeCt8yr7jE"/>
+<div>
+<div class="font-body-md text-body-md font-bold text-on-surface">Farm Manager</div>
+<div class="font-label-md text-label-md text-on-surface-variant">North Plot - Active</div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary rounded-lg py-sm font-label-md text-label-md flex items-center justify-center gap-sm hover:bg-primary-container hover:text-on-primary-container transition-colors mb-xl shadow-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span> Add New Farm
+            </button>
+</div>
+<div class="flex flex-col gap-sm flex-grow">
+<!-- Labels: ["Home", "Soil Lab", "Market Intel", "Seasonal Calendar", "Disease ID", "History"] -->
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span> Home
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="science">science</span> Soil Lab
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span> Market Intel
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span> Seasonal Calendar
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="psychiatry">psychiatry</span> Disease ID
+            </a>
+<!-- Active State -->
+<a class="flex items-center gap-md bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-lg px-md py-sm opacity-80 transition-opacity text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined fill" data-icon="history">history</span> History
+            </a>
+</div>
+<div class="flex flex-col gap-sm mt-auto border-t border-outline-variant pt-lg">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="warning">warning</span> Alerts
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-lg md:p-xxl flex flex-col gap-xl relative min-h-screen pb-huge md:pb-xxl">
+<!-- Header Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-lg">
+<div>
+<h1 class="text-display-lg font-display-lg text-on-surface">History &amp; Reports</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-sm">North Plot Performance Analysis</p>
+</div>
+<div class="flex gap-md w-full sm:w-auto">
+<button class="flex-1 sm:flex-none border border-outline-variant bg-surface text-on-surface rounded-lg py-sm px-lg font-label-md text-label-md flex items-center justify-center gap-sm hover:bg-surface-container-highest transition-colors shadow-sm" onclick="document.getElementById('feedbackModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-primary" data-icon="chat_bubble">chat_bubble</span> Provide Feedback
+                </button>
+<button class="flex-1 sm:flex-none bg-secondary text-on-secondary rounded-lg py-sm px-lg font-label-md text-label-md flex items-center justify-center gap-sm hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span> Export as PDF
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg lg:gap-xl">
+<!-- Predicted vs Actual Yield (Spans 8 columns on large screens) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col gap-md">
+<div class="flex justify-between items-center border-b border-outline-variant pb-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="bar_chart">bar_chart</span>
+                        Yield Comparison (2023 Season)
+                    </h2>
+<span class="text-label-md font-label-md text-on-surface-variant bg-surface-container px-sm py-xs rounded-full">Wheat (Winter)</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-label-md font-label-md text-on-surface-variant border-b border-outline-variant">
+<th class="py-md pr-md">Zone</th>
+<th class="py-md px-md">Predicted (t/ha)</th>
+<th class="py-md px-md">Actual (t/ha)</th>
+<th class="py-md pl-md">Variance</th>
+</tr>
+</thead>
+<tbody class="text-body-md font-body-md text-on-surface">
+<tr class="border-b border-outline-variant border-opacity-50 hover:bg-surface-container-lowest transition-colors">
+<td class="py-md pr-md font-bold">North Ridge</td>
+<td class="py-md px-md">6.8</td>
+<td class="py-md px-md">7.2</td>
+<td class="py-md pl-md text-primary font-bold flex items-center gap-xs">+5.8% <span class="material-symbols-outlined text-[16px]" data-icon="arrow_upward">arrow_upward</span></td>
+</tr>
+<tr class="border-b border-outline-variant border-opacity-50 hover:bg-surface-container-lowest transition-colors">
+<td class="py-md pr-md font-bold">East Valley</td>
+<td class="py-md px-md">7.5</td>
+<td class="py-md px-md">7.3</td>
+<td class="py-md pl-md text-tertiary-container font-bold flex items-center gap-xs">-2.6% <span class="material-symbols-outlined text-[16px]" data-icon="arrow_downward">arrow_downward</span></td>
+</tr>
+<tr class="border-b border-outline-variant border-opacity-50 hover:bg-surface-container-lowest transition-colors">
+<td class="py-md pr-md font-bold">South Flats</td>
+<td class="py-md px-md">5.9</td>
+<td class="py-md px-md">6.1</td>
+<td class="py-md pl-md text-primary font-bold flex items-center gap-xs">+3.3% <span class="material-symbols-outlined text-[16px]" data-icon="arrow_upward">arrow_upward</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-md pr-md font-bold">West Boundary</td>
+<td class="py-md px-md">6.2</td>
+<td class="py-md px-md">6.2</td>
+<td class="py-md pl-md text-on-surface-variant font-bold flex items-center gap-xs">0.0% <span class="material-symbols-outlined text-[16px]" data-icon="horizontal_rule">horizontal_rule</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Mini Stat Cards (Spans 4 columns) -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Overall Accuracy -->
+<div class="bg-primary-container text-on-primary-container rounded-xl p-lg shadow-sm flex flex-col gap-sm relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-20">
+<span class="material-symbols-outlined text-[120px]" data-icon="track_changes">track_changes</span>
+</div>
+<div class="text-label-md font-label-md opacity-80 uppercase tracking-widest z-10">Model Accuracy</div>
+<div class="text-display-lg font-display-lg font-bold z-10">94.2%</div>
+<div class="text-body-sm font-body-sm z-10">+1.2% vs previous season</div>
+</div>
+<!-- Harvest Image Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm flex-1 relative group">
+<div class="bg-cover bg-center w-full h-full min-h-[160px] absolute inset-0 transition-transform duration-500 group-hover:scale-105" data-alt="A high-resolution aerial shot of a modern combine harvester working its way through a golden wheat field at sunset, kicking up a gentle haze of dust in the warm, long-shadow lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJ5RiKfTDdlicMUlqhvGSqE2VAGBoez2Tw9DvnguY_sbtjD9YcBg3iZeTk0DGksR3n_mO_EpEgiyNEi8PHjFm9P0OrPcgrARH0aOIzfuChuwfU0CPSccyrHazoJNWTq-4x_ziyikTiPzKrrigvJG43I4RWzr-nOV4gdevC0SbyixrTuNp4QG_mwLRth9fidlVDl3P6Wkg8l_v7_NEnld__UQPpbSaGWCNM9uHZ7AJv-AgE-A-679o7sMD3JwF9XnVjDjwY0uoRY6s')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-md">
+<div class="text-headline-md font-headline-md text-on-primary">Harvest Log</div>
+<div class="text-body-sm font-body-sm text-surface-container">Oct 12 - Oct 18, 2023</div>
+</div>
+</div>
+</div>
+<!-- Soil Test History (Spans full width) -->
+<div class="lg:col-span-12 bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col gap-md">
+<div class="flex justify-between items-center border-b border-outline-variant pb-sm mb-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="science">science</span>
+                        Soil Test History
+                    </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Test 1 -->
+<div class="border border-outline-variant rounded-lg p-md hover:border-primary transition-colors cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary-container text-on-primary-container text-label-md font-label-md px-sm py-xs rounded-bl-lg">Latest</div>
+<div class="text-label-md font-label-md text-on-surface-variant mb-sm">Sep 05, 2023</div>
+<div class="flex justify-between items-end mb-sm">
+<span class="text-body-lg font-body-lg font-bold text-on-surface">Pre-Planting Analysis</span>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+</div>
+<!-- NPK Sliders Display (Read Only) -->
+<div class="flex flex-col gap-xs mt-md">
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">N</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%]"></div>
+</div>
+<span class="w-12 text-right text-label-md font-label-md">45 ppm</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">P</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full w-[30%]"></div>
+</div>
+<span class="w-12 text-right text-label-md font-label-md">30 ppm</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">K</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[70%]"></div>
+</div>
+<span class="w-12 text-right text-label-md font-label-md">110 ppm</span>
+</div>
+</div>
+</div>
+<!-- Test 2 -->
+<div class="border border-outline-variant rounded-lg p-md hover:border-primary transition-colors cursor-pointer">
+<div class="text-label-md font-label-md text-on-surface-variant mb-sm">Jun 12, 2023</div>
+<div class="flex justify-between items-end mb-sm">
+<span class="text-body-lg font-body-lg font-bold text-on-surface">Mid-Season Check</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="description">description</span>
+</div>
+<!-- NPK Sliders Display (Read Only) -->
+<div class="flex flex-col gap-xs mt-md opacity-70">
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">N</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[60%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">P</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full w-[40%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">K</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[65%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Test 3 -->
+<div class="border border-outline-variant rounded-lg p-md hover:border-primary transition-colors cursor-pointer">
+<div class="text-label-md font-label-md text-on-surface-variant mb-sm">Mar 20, 2023</div>
+<div class="flex justify-between items-end mb-sm">
+<span class="text-body-lg font-body-lg font-bold text-on-surface">Post-Thaw Baseline</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="description">description</span>
+</div>
+<!-- NPK Sliders Display (Read Only) -->
+<div class="flex flex-col gap-xs mt-md opacity-70">
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">N</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[35%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">P</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full w-[25%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="w-6 text-label-md font-label-md text-on-surface">K</span>
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[50%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Feedback Modal -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-inverse-surface bg-opacity-50 backdrop-blur-sm px-lg" id="feedbackModal">
+<div class="bg-surface-container-lowest rounded-xl shadow-lg w-full max-w-lg overflow-hidden flex flex-col relative border border-outline-variant">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="text-headline-md font-headline-md text-on-surface">Submit Feedback</h3>
+<button class="text-on-surface-variant hover:text-error transition-colors" onclick="document.getElementById('feedbackModal').classList.add('hidden')">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="p-lg flex flex-col gap-md">
+<p class="text-body-md font-body-md text-on-surface-variant">Help us improve AgriPrecise. Tell us about your experience with the history and reporting tools.</p>
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface">Feedback Type</label>
+<select class="h-huge rounded border border-outline bg-surface px-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-body-md font-body-md">
+<option>Feature Suggestion</option>
+<option>Bug Report</option>
+<option>Data Inaccuracy</option>
+<option>Other</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface">Details</label>
+<textarea class="rounded border border-outline bg-surface p-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-body-md font-body-md min-h-[120px] resize-y" placeholder="Describe your suggestion or issue..."></textarea>
+</div>
+</div>
+<div class="p-lg border-t border-outline-variant flex justify-end gap-md bg-surface-container-low">
+<button class="px-lg py-sm rounded border border-outline-variant text-on-surface hover:bg-surface-container transition-colors text-label-md font-label-md" onclick="document.getElementById('feedbackModal').classList.add('hidden')">Cancel</button>
+<button class="px-lg py-sm rounded bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-colors text-label-md font-label-md" onclick="document.getElementById('feedbackModal').classList.add('hidden')">Submit</button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg py-md lg:hidden shadow-lg bg-surface dark:bg-inverse-surface docked full-width rounded-t-xl">
+<!-- Labels: ["Home", "Soil", "Market", "Alerts", "Farms"] -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md mt-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="grass">grass</span>
+<span class="text-label-md font-label-md mt-xs">Soil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="text-label-md font-label-md mt-xs">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="text-label-md font-label-md mt-xs">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
+<span class="text-label-md font-label-md mt-xs">Farms</span>
+</a>
+</nav>
+<script>
+        // Simple click outside to close modal
+        document.getElementById('feedbackModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+    </script>
+</body></html>

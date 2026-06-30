@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriPrecise - Crop Guides Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#002204",
+                      "on-surface": "#071e27",
+                      "primary-fixed": "#a3f69c",
+                      "primary-fixed-dim": "#88d982",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#001b3d",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#774c00",
+                      "primary-container": "#2e7d32",
+                      "surface": "#f3faff",
+                      "tertiary-container": "#986200",
+                      "on-primary-fixed-variant": "#005312",
+                      "inverse-on-surface": "#dff4ff",
+                      "outline": "#707a6c",
+                      "surface-container-high": "#d5ecf8",
+                      "on-tertiary-fixed-variant": "#643f00",
+                      "on-secondary-container": "#003670",
+                      "inverse-surface": "#1e333c",
+                      "on-surface-variant": "#40493d",
+                      "on-primary-container": "#cbffc2",
+                      "tertiary-fixed": "#ffddb5",
+                      "surface-container": "#dbf1fe",
+                      "surface-container-highest": "#cfe6f2",
+                      "tertiary-fixed-dim": "#ffb957",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#2a1800",
+                      "inverse-primary": "#88d982",
+                      "background": "#f3faff",
+                      "surface-variant": "#cfe6f2",
+                      "secondary": "#005db7",
+                      "surface-dim": "#c7dde9",
+                      "on-tertiary-container": "#ffeede",
+                      "surface-tint": "#1b6d24",
+                      "secondary-fixed-dim": "#a9c7ff",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#d6e3ff",
+                      "on-background": "#071e27",
+                      "primary": "#0d631b",
+                      "outline-variant": "#bfcaba",
+                      "surface-container-low": "#e6f6ff",
+                      "surface-bright": "#f3faff",
+                      "secondary-container": "#64a1ff",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#00468c",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "24px",
+                      "giant": "64px",
+                      "xs": "4px",
+                      "huge": "48px",
+                      "sm": "8px",
+                      "md": "12px",
+                      "xxl": "32px",
+                      "lg": "16px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      }
+              }
+            },
+          }
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 1;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center w-full px-xxl py-md max-w-full bg-surface dark:bg-inverse-surface shadow-sm">
+<div class="flex items-center gap-xl">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">AgriPrecise</span>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-highest transition-colors px-md py-sm rounded" href="#">My Farms</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-highest transition-colors px-md py-sm rounded" href="#">Soil Analysis</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-highest transition-colors px-md py-sm rounded" href="#">Market</a>
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary font-bold pb-1 hover:bg-surface-container dark:hover:bg-surface-container-highest transition-colors px-md py-sm rounded" href="#">Guides</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-on-surface-variant" data-icon="language">language</span></button>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span></button>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-on-surface-variant" data-icon="account_circle">account_circle</span></button>
+</div>
+</header>
+<div class="flex flex-1 w-full mt-[72px] h-[calc(100vh-72px)] overflow-hidden">
+<!-- SideNav (Categories) -->
+<aside class="hidden lg:flex flex-col h-full w-64 border-r border-outline-variant bg-surface-container-low p-lg gap-md flex-shrink-0 overflow-y-auto pb-huge">
+<div class="mb-lg">
+<h3 class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-sm">Crop Categories</h3>
+</div>
+<a class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-lg px-md py-sm opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined">grass</span>
+<span class="text-body-md font-body-md">Cereals</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">eco</span>
+<span class="text-body-md font-body-md">Vegetables</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">local_florist</span>
+<span class="text-body-md font-body-md">Fruits</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">attach_money</span>
+<span class="text-body-md font-body-md">Cash Crops</span>
+</a>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-background p-lg md:p-xxl pb-giant flex flex-col gap-xl">
+<!-- Header & Variety Selector -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div>
+<h1 class="text-display-lg font-display-lg text-on-background mb-xs">Wheat</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Triticum aestivum - Comprehensive growing guide.</p>
+</div>
+<div class="w-full md:w-64">
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Variety Selector</label>
+<div class="relative">
+<select class="w-full h-[48px] bg-surface border border-outline rounded text-body-md font-body-md text-on-surface px-md py-sm appearance-none focus:border-primary focus:border-2 focus:outline-none transition-colors">
+<option>Hard Red Winter</option>
+<option>Soft Red Winter</option>
+<option>Hard Red Spring</option>
+<option>Durum</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<!-- Lifecycle Timeline (Span 2 cols) -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-surface-variant rounded-xl p-lg shadow-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">psychiatry</span>
+                        Growth Stages
+                    </h2>
+<div class="relative pl-lg border-l-2 border-surface-variant ml-md py-md flex flex-col gap-xl">
+<!-- Stage 1 -->
+<div class="relative">
+<div class="absolute -left-[29px] top-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full bg-primary ring-4 ring-surface-container-lowest"></div>
+<div class="bg-surface-container-low p-md rounded-lg ml-sm">
+<h4 class="text-body-md font-body-md font-bold text-on-surface">1. Germination</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Days 0-10. Requires moist soil (40-50% moisture).</p>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="relative">
+<div class="absolute -left-[29px] top-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full bg-primary-fixed-dim ring-4 ring-surface-container-lowest"></div>
+<div class="bg-surface p-md rounded-lg ml-sm border border-outline-variant">
+<h4 class="text-body-md font-body-md font-bold text-on-surface">2. Tillering</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Days 15-40. Critical phase for nitrogen application.</p>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="relative">
+<div class="absolute -left-[29px] top-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full bg-surface-variant ring-4 ring-surface-container-lowest"></div>
+<div class="bg-surface p-md rounded-lg ml-sm border border-outline-variant opacity-70">
+<h4 class="text-body-md font-body-md font-bold text-on-surface">3. Heading</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Days 60+. Monitor for fungal diseases.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Calculator -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-lg shadow-sm flex flex-col">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">calculate</span>
+                        Input Calculator
+                    </h2>
+<div class="flex-1 flex flex-col gap-md">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Field Size (Hectares)</label>
+<input class="w-full h-[48px] bg-surface border border-outline rounded text-body-md font-body-md text-on-surface px-md focus:border-primary focus:border-2 focus:outline-none transition-colors" type="number" value="50"/>
+</div>
+<div class="bg-surface-container p-md rounded-lg mt-sm">
+<h4 class="text-label-md font-label-md text-on-surface-variant mb-sm">Estimated Requirements</h4>
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="text-body-sm font-body-sm text-on-surface">Seed</span>
+<span class="text-body-md font-body-md font-bold text-primary">6,500 kg</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="text-body-sm font-body-sm text-on-surface">Nitrogen (N)</span>
+<span class="text-body-md font-body-md font-bold text-tertiary">4,000 kg</span>
+</div>
+<div class="flex justify-between items-center py-xs">
+<span class="text-body-sm font-body-sm text-on-surface">Water</span>
+<span class="text-body-md font-body-md font-bold text-secondary">2.5m Liters</span>
+</div>
+</div>
+<button class="mt-auto w-full h-[48px] bg-primary text-on-primary rounded font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-sm">
+                            Generate Report
+                        </button>
+</div>
+</div>
+</div>
+<!-- Video Library -->
+<div class="mt-xl">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">smart_display</span>
+                    Tutorials &amp; Guides
+                </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Video Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden border border-surface-variant shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+<div class="h-[120px] relative bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A modern agricultural drone spraying a bright green wheat field under a clear blue sky, capturing a high-tech data-driven farming scene. Clean lighting, highly detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiivnLXDj6r7XO9NOJHmW_oxZwNgro3wuRcjxmZtsiV542QDMEoIe62PctYUU26l7jULOUgWlAEpCMPKYgBebBmeUqoYekae3UdiI7ZQ45axaFHF4SnCGGS-Ppeyi1t9ko4xP3yIc_jTpPXoYiLKM1wyl_hE1avX6p3l6Ptwc6XvDJOaJ01lmW4YR5YWW9VqHvidGKe1fIhdNyrZvF-slOUZ34_-LxlMf8gcykzB4u7c_o0OKSJyUd7bsjGUQB9rzyqIhXsp9RJoo"/>
+<div class="absolute inset-0 bg-on-surface opacity-0 group-hover:opacity-20 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-display-lg drop-shadow-md">play_circle</span>
+</div>
+</div>
+<div class="p-md">
+<h4 class="text-body-md font-body-md font-bold text-on-surface line-clamp-2 mb-xs">Optimizing Nitrogen Application</h4>
+<p class="text-label-md font-label-md text-on-surface-variant">8:24 • Agronomy Team</p>
+</div>
+</div>
+<!-- Video Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden border border-surface-variant shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+<div class="h-[120px] relative bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Close up of a gloved hand inspecting healthy wheat stalks. Bright daylight, shallow depth of field focusing on the texture of the plant, conveying professional agricultural care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHnQPtPRWMmoTZlDrtmMg5qExeEQED8C1Rbthya7n01CmcDnaXyzLnV9kvENgzAnvDhXCMajzYBevmvH2im7VJVGCoOoTjJNuitXIsZ3jhWB3YLEkL5GuQ6rdsju74OJj76vvdK3VG2Mj_JdJL-klHDn920JiN0PTTTKlYv98e4n1Ja4nK_40Ic00tgYpnIjwLG1hcNLznZpGsQq8tCOEFLT-Ugx5NdRWPjZ7QU8Dsv4IinE9SWIfnyLrr-Red3imnlaFSvcvK3SU"/>
+<div class="absolute inset-0 bg-on-surface opacity-0 group-hover:opacity-20 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-display-lg drop-shadow-md">play_circle</span>
+</div>
+</div>
+<div class="p-md">
+<h4 class="text-body-md font-body-md font-bold text-on-surface line-clamp-2 mb-xs">Identifying Early Stage Rust</h4>
+<p class="text-label-md font-label-md text-on-surface-variant">5:12 • Disease Control</p>
+</div>
+</div>
+<!-- Video Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden border border-surface-variant shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+<div class="h-[120px] relative bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A large modern combine harvester working in a golden wheat field during golden hour sunset. Dusty atmosphere, cinematic lighting, emphasizing large-scale precision agriculture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf30jGV-nEdGjcUj24wMGXnUXggRhWp9S5cz9LIHm9NR1W1b7_DRDPFPVcvYj389T5Lb9CZsq9WBgCjcp28WApyNm8tCxx3BuKija31x6GSxMHxNMVic9p2mwuNovjWjKMvaBAY6iMifs_qBLNa8hQQKTd5Cz_F9HQnWjFDSd7ZoP5Qo04hAocc3I_TPJq8bxzF5PgfDNKwEjKKVvHJXYeyimZIHp04gcg6G3nr-pIeQdi-zN9ZgRQOgyUJk8MxlV8UHvAh2dLrwQ"/>
+<div class="absolute inset-0 bg-on-surface opacity-0 group-hover:opacity-20 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-display-lg drop-shadow-md">play_circle</span>
+</div>
+</div>
+<div class="p-md">
+<h4 class="text-body-md font-body-md font-bold text-on-surface line-clamp-2 mb-xs">Harvest Timing Strategies</h4>
+<p class="text-label-md font-label-md text-on-surface-variant">12:05 • Yield Max</p>
+</div>
+</div>
+<!-- Video Card 4 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden border border-surface-variant shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+<div class="h-[120px] relative bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A dashboard view of a tablet displaying colorful soil moisture heatmaps held over a field. Corporate modern style, emphasizing data visualization and smart farming technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjyUGkmzeF8C4PkDS0ouOFq8XYNJ8Kob9pUpKnQkqlQss52gNmNU8vj_fDiCYHLoNy6skyTYmv06HIsCwAs_9qfNL709062eJRhFMUqVajgiqoz4wCq1JeX_uFoq4rlTBISCSShEu_UbrOVZoCQRnPP3vZ_T17W1O4VUJmDtQnyKEmx8Ctin5Wv8Hwth65HAWZNh4qkSPrOJ00Tws9mTox_FJw8EYhxHlPPaaD3Yne1Prs1WzlQM26paY38M8ZyVk3Ab-9TQlN_eo"/>
+<div class="absolute inset-0 bg-on-surface opacity-0 group-hover:opacity-20 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-display-lg drop-shadow-md">play_circle</span>
+</div>
+</div>
+<div class="p-md">
+<h4 class="text-body-md font-body-md font-bold text-on-surface line-clamp-2 mb-xs">Using Soil Sensor Data</h4>
+<p class="text-label-md font-label-md text-on-surface-variant">6:45 • Tech Ops</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg py-md lg:hidden bg-surface dark:bg-inverse-surface shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md mt-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-full px-lg py-xs scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="grass">grass</span>
+<span class="text-label-md font-label-md mt-xs">Guides</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="text-label-md font-label-md mt-xs">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
+<span class="text-label-md font-label-md mt-xs">Farms</span>
+</a>
+</nav>
+</body></html>

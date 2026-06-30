@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriPrecise - Market Intelligence Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#002204",
+                      "on-surface": "#071e27",
+                      "primary-fixed": "#a3f69c",
+                      "primary-fixed-dim": "#88d982",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#001b3d",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#774c00",
+                      "primary-container": "#2e7d32",
+                      "surface": "#f3faff",
+                      "tertiary-container": "#986200",
+                      "on-primary-fixed-variant": "#005312",
+                      "inverse-on-surface": "#dff4ff",
+                      "outline": "#707a6c",
+                      "surface-container-high": "#d5ecf8",
+                      "on-tertiary-fixed-variant": "#643f00",
+                      "on-secondary-container": "#003670",
+                      "inverse-surface": "#1e333c",
+                      "on-surface-variant": "#40493d",
+                      "on-primary-container": "#cbffc2",
+                      "tertiary-fixed": "#ffddb5",
+                      "surface-container": "#dbf1fe",
+                      "surface-container-highest": "#cfe6f2",
+                      "tertiary-fixed-dim": "#ffb957",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#2a1800",
+                      "inverse-primary": "#88d982",
+                      "background": "#f3faff",
+                      "surface-variant": "#cfe6f2",
+                      "secondary": "#005db7",
+                      "surface-dim": "#c7dde9",
+                      "on-tertiary-container": "#ffeede",
+                      "surface-tint": "#1b6d24",
+                      "secondary-fixed-dim": "#a9c7ff",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#d6e3ff",
+                      "on-background": "#071e27",
+                      "primary": "#0d631b",
+                      "outline-variant": "#bfcaba",
+                      "surface-container-low": "#e6f6ff",
+                      "surface-bright": "#f3faff",
+                      "secondary-container": "#64a1ff",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#00468c",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "24px",
+                      "giant": "64px",
+                      "xs": "4px",
+                      "huge": "48px",
+                      "sm": "8px",
+                      "md": "12px",
+                      "xxl": "32px",
+                      "lg": "16px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+          .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+          }
+      </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-sm flex">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-full p-lg gap-md bg-surface-container-low dark:bg-surface-dim border-r border-outline-variant dark:border-outline flat no shadows w-64 fixed left-0 top-0 z-40">
+<div class="mb-xl">
+<h1 class="text-headline-md font-headline-md font-extrabold text-primary dark:text-primary-fixed">AgriPrecise</h1>
+</div>
+<div class="flex items-center gap-md mb-xl p-md rounded-lg bg-surface-container">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A close up, highly detailed portrait of a modern farm manager wearing a cap, standing in front of a sunlit agricultural field. Professional lighting, vibrant colors. Corporate modern aesthetic, optimistic tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDccBdBS6bnl2d0e8r2IaylwkNgfO84_TnElfh7YP1RVtvut63gcHqsnL_10pqWiMHQ9_4zBP3ofB6YYLO-HQoCstVEtY-FcyYUrqJ7pBTYrLf5amVoEaViHwfY2kwTmGHf8ScHqKquLy1t7mfBgF0zRV5z59ApcVeKuXeNuwLQuCeFkOt_QwZRBcluaqzN8WNa7GL_WIDcuYcenh7vZiz2eEaW9sXT_3sqOjytGsvHyrWGlgh_7EAq7izwW9qGdmRqXfOenPHXGJk"/>
+<div>
+<p class="text-body-md font-body-md font-semibold text-on-surface">Farm Manager</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">North Plot - Active</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-sm">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">science</span>
+<span class="text-label-md font-label-md">Soil Lab</span>
+</a>
+<a class="flex items-center gap-md bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-lg px-md py-sm opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="text-label-md font-label-md">Market Intel</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-label-md font-label-md">Seasonal Calendar</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">psychiatry</span>
+<span class="text-label-md font-label-md">Disease ID</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-md font-label-md">History</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-sm border-t border-outline-variant pt-md">
+<button class="w-full py-md bg-primary text-on-primary rounded-full text-label-md font-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors mb-md flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span> Add New Farm
+            </button>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span class="text-label-md font-label-md">Alerts</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar (Mobile Only) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-xxl py-md max-w-full bg-surface dark:bg-inverse-surface shadow-sm lg:hidden h-16">
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">AgriPrecise</h1>
+<div class="flex gap-md text-primary dark:text-inverse-primary">
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container p-sm rounded-full transition-colors">language</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container p-sm rounded-full transition-colors">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container p-sm rounded-full transition-colors">account_circle</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 p-lg lg:p-xxl pb-24 lg:pb-xxl overflow-x-hidden">
+<header class="mb-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface hidden md:block">Market Intelligence</h2>
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface md:hidden">Market Intelligence</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-xs">Real-time pricing and forecasts.</p>
+</div>
+<div class="flex items-center gap-md bg-surface-container rounded-full px-lg py-sm border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant">location_on</span>
+<select class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 p-0 pr-xl cursor-pointer">
+<option>Central Valley, CA</option>
+<option>Midwest Region</option>
+<option>Global Markets</option>
+</select>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-lg lg:gap-xl">
+<!-- Multi-mandi Price Charts (Hero Component) -->
+<section class="md:col-span-8 lg:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col min-h-[400px]">
+<div class="flex justify-between items-center mb-md border-b border-outline-variant pb-sm">
+<h3 class="text-headline-md font-headline-md text-on-surface">Commodity Price Trends</h3>
+<div class="flex gap-sm">
+<button class="px-md py-xs rounded-full bg-primary-container text-on-primary-container text-label-md font-label-md">Wheat</button>
+<button class="px-md py-xs rounded-full border border-outline text-on-surface text-label-md font-label-md hover:bg-surface-container transition-colors">Corn</button>
+<button class="px-md py-xs rounded-full border border-outline text-on-surface text-label-md font-label-md hover:bg-surface-container transition-colors">Soy</button>
+</div>
+</div>
+<!-- Chart Area Placeholder (Recharts Style) -->
+<div class="flex-1 relative flex flex-col justify-end w-full pt-xl">
+<div class="absolute inset-0 flex flex-col justify-between py-md z-0 pointer-events-none">
+<div class="border-b border-[#F0F0F0] w-full flex-1"></div>
+<div class="border-b border-[#F0F0F0] w-full flex-1"></div>
+<div class="border-b border-[#F0F0F0] w-full flex-1"></div>
+<div class="border-b border-outline-variant w-full"></div>
+</div>
+<div class="relative z-10 w-full h-48 flex items-end justify-between px-md">
+<!-- Simulated Line Chart Path -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,80 Q20,60 40,70 T80,30 T100,20" fill="none" stroke="#0d631b" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0,90 Q30,85 50,60 T90,50 T100,45" fill="none" stroke="#005db7" stroke-dasharray="4" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+<div class="flex justify-between text-label-md font-label-md text-on-surface-variant mt-sm px-md">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+<div class="flex gap-lg mt-md pt-sm border-t border-outline-variant text-label-md font-label-md">
+<div class="flex items-center gap-xs"><div class="w-3 h-3 rounded-full bg-primary"></div><span>Local Mandi</span></div>
+<div class="flex items-center gap-xs"><div class="w-3 h-3 rounded-full bg-secondary"></div><span>National Avg (Proj)</span></div>
+</div>
+</section>
+<!-- ML Forecast Widget -->
+<section class="md:col-span-8 lg:col-span-4 bg-primary text-on-primary rounded-xl p-lg shadow-sm relative overflow-hidden flex flex-col justify-between">
+<!-- Abstract background pattern -->
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary-fixed-dim opacity-20 rounded-full blur-xl"></div>
+<div class="absolute -left-8 -bottom-8 w-32 h-32 bg-secondary opacity-30 rounded-full blur-lg"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary-fixed">auto_graph</span>
+<h3 class="text-headline-md font-headline-md font-semibold">AI Price Forecast</h3>
+</div>
+<p class="text-body-sm font-body-sm text-on-primary opacity-90 mb-xl">7-Day prediction model based on weather patterns and global yields.</p>
+<div class="bg-on-primary-fixed-variant bg-opacity-40 p-md rounded-lg mb-md backdrop-blur-sm border border-primary-fixed-dim/30">
+<div class="flex justify-between items-center mb-xs">
+<span class="text-body-md font-body-md font-medium">Wheat (Hard Red)</span>
+<span class="text-label-md font-label-md text-primary-fixed flex items-center"><span class="material-symbols-outlined text-sm mr-1">arrow_upward</span> +4.2%</span>
+</div>
+<div class="text-display-lg font-display-lg font-bold">$6.85 <span class="text-body-sm font-body-sm opacity-80 font-normal">/ bu</span></div>
+<p class="text-label-md font-label-md opacity-80 mt-1">Expected peak next Thursday</p>
+</div>
+</div>
+<button class="relative z-10 w-full py-sm mt-auto bg-surface text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container transition-colors font-bold">
+                    View Full Report
+                </button>
+</section>
+<!-- Transport Calculator -->
+<section class="md:col-span-4 lg:col-span-6 bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm">
+<div class="flex items-center gap-sm mb-md border-b border-outline-variant pb-sm">
+<span class="material-symbols-outlined text-secondary">local_shipping</span>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface">Logistics Calculator</h3>
+</div>
+<form class="space-y-md">
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Origin</label>
+<input class="w-full h-[48px] rounded-lg border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-sm bg-surface" type="text" value="North Plot Silo"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Destination Market</label>
+<select class="w-full h-[48px] rounded-lg border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-sm bg-surface">
+<option>Central Terminal</option>
+<option>East Coast Port</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-xs">Volume (Tons)</label>
+<!-- N-P-K Style Slider for general use -->
+<div class="flex items-center gap-md">
+<input class="w-full h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-secondary" max="100" min="1" type="range" value="45"/>
+<span class="w-16 text-right font-body-md text-on-surface font-semibold">45 t</span>
+</div>
+</div>
+<div class="bg-surface-container p-md rounded-lg flex justify-between items-center mt-md border border-outline-variant/50">
+<div>
+<span class="block text-label-md font-label-md text-on-surface-variant">Est. Transport Cost</span>
+<span class="block text-headline-md font-headline-md text-on-surface font-bold">$1,240.00</span>
+</div>
+<button class="px-lg py-sm bg-secondary text-on-secondary rounded-full text-label-md font-label-md hover:bg-secondary-container hover:text-on-secondary-container transition-colors" type="button">
+                            Book Freight
+                        </button>
+</div>
+</form>
+</section>
+<!-- Price Alert Configuration -->
+<section class="md:col-span-4 lg:col-span-6 bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm">
+<div class="flex justify-between items-center mb-md border-b border-outline-variant pb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary">notifications_active</span>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface">Active Alerts</h3>
+</div>
+<button class="text-primary hover:bg-surface-container p-xs rounded-full transition-colors"><span class="material-symbols-outlined">add</span></button>
+</div>
+<div class="space-y-sm">
+<!-- Alert Item 1 -->
+<div class="flex justify-between items-center p-md bg-surface border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined">trending_down</span>
+</div>
+<div>
+<h4 class="text-body-md font-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Soybeans Drop</h4>
+<p class="text-label-md font-label-md text-on-surface-variant">Below $12.50/bu</p>
+</div>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-outline after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Alert Item 2 -->
+<div class="flex justify-between items-center p-md bg-surface border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<h4 class="text-body-md font-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Corn Spike</h4>
+<p class="text-label-md font-label-md text-on-surface-variant">Above $5.20/bu</p>
+</div>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-outline after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg py-md lg:hidden bg-surface dark:bg-inverse-surface shadow-lg docked full-width rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-md font-label-md mt-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">grass</span>
+<span class="text-label-md font-label-md mt-xs">Soil</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-full px-lg py-xs scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span class="text-label-md font-label-md mt-xs">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-label-md font-label-md mt-xs">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-lg py-xs hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">agriculture</span>
+<span class="text-label-md font-label-md mt-xs">Farms</span>
+</a>
+</nav>
+</body></html>
