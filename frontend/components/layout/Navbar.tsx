@@ -67,7 +67,7 @@ export default function Navbar() {
 
   // Language dropdown (reused for both desktop and mobile)
   const LangDropdown = () => (
-    <div className="absolute right-0 mt-2 w-52 bg-white border border-outline-variant/50 rounded-xl shadow-xl py-1.5 z-[9999] animate-in fade-in slide-in-from-top-2 duration-150">
+    <div className="absolute right-0 mt-2 w-52 bg-white/90 backdrop-blur-xl border border-stone-200/60 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] py-1.5 z-[9999] animate-fade-in">
       {LANGUAGES.map(lang => (
         <button
           key={lang.code}
@@ -76,15 +76,15 @@ export default function Navbar() {
             handleLanguageChange(lang.code)
           }}
           className={cn(
-            'w-full text-left px-4 py-2.5 text-xs font-semibold transition-colors flex items-center justify-between gap-2 hover:bg-primary/5',
+            'w-full text-left px-4 py-2.5 text-xs font-semibold transition-colors flex items-center justify-between gap-2 hover:bg-[#1a6b3c]/5',
             language === lang.code
-              ? 'text-primary bg-primary/8'
-              : 'text-on-surface-variant'
+              ? 'text-[#1a6b3c] bg-[#1a6b3c]/8'
+              : 'text-[#6b7280]'
           )}
         >
           <span>{lang.label}</span>
           {language === lang.code && (
-            <span className="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-[10px] flex-shrink-0">✓</span>
+            <span className="w-5 h-5 rounded-full bg-[#d4a853] text-white flex items-center justify-center text-[10px] flex-shrink-0">✓</span>
           )}
         </button>
       ))}
@@ -93,17 +93,22 @@ export default function Navbar() {
 
   return (
     <nav className={cn(
-      'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent',
-      scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-outline-variant/30' : 'bg-white/50 backdrop-blur-sm'
+      'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b',
+      scrolled
+        ? 'bg-[#faf8f4]/95 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border-stone-200/60'
+        : 'bg-transparent border-transparent'
     )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-sm">
-              <span className="text-lg text-white">🌱</span>
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#1a6b3c] to-[#2d8f5e] flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
+              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20c4 0 6-2 8-6 2-4 3-8 3-8s-3 1-5 2z" />
+                <path d="M10.5 9.5c1.5-2 3.5-3.5 6.5-4.5 0 0-.5 2-1.5 4" opacity="0.5" />
+              </svg>
             </div>
-            <span className="font-extrabold text-primary text-xl tracking-tight">
+            <span className="font-extrabold text-xl tracking-tight gradient-text">
               AgriPrecise
             </span>
           </Link>
@@ -117,13 +122,21 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
+                    'relative px-4 py-2 text-sm font-medium transition-all duration-200 group',
                     isActive
-                      ? 'text-primary border-b-2 border-primary rounded-none font-bold'
-                      : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-low'
+                      ? 'text-[#1a6b3c] font-bold'
+                      : 'text-stone-600 hover:text-[#1a6b3c]'
                   )}
                 >
                   {t(link.labelKey)}
+                  {/* Active bottom border */}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#1a6b3c] rounded-full" />
+                  )}
+                  {/* Hover underline effect */}
+                  {!isActive && (
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#1a6b3c] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  )}
                 </Link>
               )
             })}
@@ -137,10 +150,10 @@ export default function Navbar() {
                 id="lang-selector-btn"
                 onClick={() => setLangOpen(o => !o)}
                 className={cn(
-                  'w-10 h-10 rounded-full flex items-center justify-center transition-colors text-on-surface-variant border bg-white text-base',
+                  'w-10 h-10 rounded-full flex items-center justify-center transition-all text-base border',
                   langOpen
-                    ? 'border-primary/50 bg-primary/5 text-primary'
-                    : 'border-outline-variant/20 hover:bg-surface-container hover:border-primary/30'
+                    ? 'border-[#1a6b3c]/50 bg-[#1a6b3c]/5 text-[#1a6b3c]'
+                    : 'border-stone-200/60 bg-white/80 text-stone-600 hover:bg-[#faf8f4] hover:border-[#1a6b3c]/30'
                 )}
                 title="Select Language"
               >
@@ -153,19 +166,19 @@ export default function Navbar() {
               <>
                 <Link
                   href="/dashboard"
-                  className="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-all"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-[#1a6b3c] transition-all"
                 >
                   {t('dashboard')}
                 </Link>
                 <Link
                   href="/recommend"
-                  className="px-4 py-2 rounded-lg text-sm font-bold bg-[#a3f69c] text-black hover:bg-[#88d982] transition-all shadow-sm flex items-center gap-1"
+                  className="px-4 py-2 rounded-xl text-sm font-bold bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e] text-white hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md flex items-center gap-1.5"
                 >
                   🌾 {t('soilLab')}
                 </Link>
                 <button
                   onClick={handleSignOut}
-                  className="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-all"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-[#1a6b3c] transition-all"
                 >
                   {t('signOut')}
                 </button>
@@ -174,13 +187,13 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-all"
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-[#1a6b3c] transition-all"
                 >
                   {t('login')}
                 </Link>
                 <Link
                   href="/register"
-                  className="px-4 py-2 rounded-lg text-sm font-bold bg-[#a3f69c] text-black hover:bg-[#88d982] transition-all shadow-sm"
+                  className="px-4 py-2 rounded-xl text-sm font-bold bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e] text-white hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md"
                 >
                   {t('register')}
                 </Link>
@@ -195,10 +208,10 @@ export default function Navbar() {
               <button
                 onClick={() => setLangOpen(o => !o)}
                 className={cn(
-                  'w-9 h-9 rounded-full flex items-center justify-center transition-colors text-sm border bg-white',
+                  'w-9 h-9 rounded-full flex items-center justify-center transition-all text-sm border',
                   langOpen
-                    ? 'border-primary/50 bg-primary/5 text-primary'
-                    : 'border-outline-variant/20 text-on-surface-variant'
+                    ? 'border-[#1a6b3c]/50 bg-[#1a6b3c]/5 text-[#1a6b3c]'
+                    : 'border-stone-200/60 bg-white/80 text-stone-600'
                 )}
               >
                 🌐
@@ -208,7 +221,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-1 rounded-lg text-on-surface-variant hover:text-primary"
+              className="p-1 rounded-lg text-stone-600 hover:text-[#1a6b3c] transition-colors"
             >
               {menuOpen ? (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -225,7 +238,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md rounded-2xl mb-4 p-4 border border-outline-variant/30 shadow-lg">
+          <div className="md:hidden bg-[#faf8f4]/98 backdrop-blur-xl rounded-2xl mb-4 p-4 border border-stone-200/60 shadow-xl animate-fade-in-up">
             {NAV_LINKS.map(link => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
               return (
@@ -236,25 +249,25 @@ export default function Navbar() {
                   className={cn(
                     'block px-4 py-3 rounded-lg text-sm font-medium mb-1 transition-all',
                     isActive
-                      ? 'bg-surface-container text-primary font-bold'
-                      : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-low'
+                      ? 'bg-[#1a6b3c]/8 text-[#1a6b3c] font-bold'
+                      : 'text-stone-600 hover:text-[#1a6b3c] hover:bg-[#1a6b3c]/5'
                   )}
                 >
                   {t(link.labelKey)}
                 </Link>
               )
             })}
-            <div className="border-t border-outline-variant/30 mt-3 pt-3 flex flex-col gap-2">
+            <div className="border-t border-stone-200/60 mt-3 pt-3 flex flex-col gap-2">
               {user ? (
                 <>
-                  <Link href="/dashboard" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-low">{t('dashboard')}</Link>
-                  <Link href="/recommend" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-lg text-sm font-bold bg-[#a3f69c] text-black text-center">🌾 {t('soilLab')}</Link>
-                  <button onClick={handleSignOut} className="px-4 py-3 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-low text-left">{t('signOut')}</button>
+                  <Link href="/dashboard" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-lg text-sm font-medium text-stone-600 hover:text-[#1a6b3c] hover:bg-[#1a6b3c]/5 transition-all">{t('dashboard')}</Link>
+                  <Link href="/recommend" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e] text-white text-center shadow-md">{t('soilLab')}</Link>
+                  <button onClick={handleSignOut} className="px-4 py-3 rounded-lg text-sm font-medium text-stone-600 hover:text-[#1a6b3c] hover:bg-[#1a6b3c]/5 text-left transition-all">{t('signOut')}</button>
                 </>
               ) : (
                 <>
-                  <Link href="/login" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-low">{t('login')}</Link>
-                  <Link href="/register" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-lg text-sm font-bold bg-[#a3f69c] text-black text-center">{t('register')}</Link>
+                  <Link href="/login" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-lg text-sm font-medium text-stone-600 hover:text-[#1a6b3c] hover:bg-[#1a6b3c]/5 transition-all">{t('login')}</Link>
+                  <Link href="/register" onClick={() => setMenuOpen(false)} className="px-4 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e] text-white text-center shadow-md">{t('register')}</Link>
                 </>
               )}
             </div>

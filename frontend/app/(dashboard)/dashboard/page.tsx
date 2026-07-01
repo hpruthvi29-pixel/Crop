@@ -14,8 +14,13 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<any>(null)
   const [predictions, setPredictions] = useState<Prediction[]>([])
+  const [currentDate, setCurrentDate] = useState<string>('')
 
   useEffect(() => {
+    setCurrentDate(new Intl.DateTimeFormat('en-US', { 
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+    }).format(new Date()))
+
     const supabase = createClient()
     
     // Fetch User & Predictions
@@ -41,8 +46,8 @@ export default function DashboardPage() {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="text-center">
-          <div className="w-10 h-10 rounded-full border-2 border-primary border-t-transparent animate-spin mx-auto mb-4" />
-          <p className="text-on-surface-variant text-sm font-semibold">Loading Dashboard...</p>
+          <div className="w-10 h-10 rounded-full border-2 border-[#1a6b3c] border-t-transparent animate-spin mx-auto mb-4" />
+          <p className="text-[#6b7280] text-sm font-semibold">Loading Dashboard...</p>
         </div>
       </div>
     )
@@ -63,110 +68,107 @@ export default function DashboardPage() {
   const profile = user?.user_metadata
   const displayName = profile?.full_name || user?.email?.split('@')[0] || 'Farmer'
 
-  const mostRecommendedCropInfo = mostRecommended ? getCropById(mostRecommended[0]) : null
-  const mostRecommendedColor = mostRecommendedCropInfo?.color || '#a855f7' // Fallback purple
-
   const statsCards = [
     {
       label: t('totalPredictions'),
       value: totalPredictions.toString(),
       icon: '📊',
-      style: {
-        background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.05))',
-        borderColor: 'rgba(34, 197, 94, 0.2)'
-      }
+      iconBg: 'bg-[#1a6b3c]/10 text-[#1a6b3c]'
     },
     {
       label: t('uniqueCrops'),
       value: uniqueCrops.toString(),
       icon: '🌱',
-      style: {
-        background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.05))',
-        borderColor: 'rgba(59, 130, 246, 0.2)'
-      }
+      iconBg: 'bg-[#c8965c]/10 text-[#c8965c]'
     },
     {
       label: t('mostRecommended'),
       value: mostRecommended ? mostRecommended[0] : '—',
       icon: getCropEmoji(mostRecommended?.[0] || ''),
-      style: {
-        background: `linear-gradient(135deg, ${mostRecommendedColor}33, ${mostRecommendedColor}0d)`,
-        borderColor: `${mostRecommendedColor}33`
-      }
+      iconBg: 'bg-[#8b4513]/10 text-[#8b4513]'
     },
     {
       label: t('lastPrediction'),
       value: recentPredictions[0] ? formatDate(recentPredictions[0].created_at).split(',')[0] : '—',
       icon: '📅',
-      style: {
-        background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(245, 158, 11, 0.05))',
-        borderColor: 'rgba(249, 115, 22, 0.2)'
-      }
+      iconBg: 'bg-[#d4a853]/10 text-[#d4a853]'
     },
   ]
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 animate-fade-in-up">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-on-surface">
+          <h1 className="text-3xl font-extrabold text-[#1a1a1a]">
             {t('goodDay')}, {displayName}! 👋
           </h1>
-          <p className="text-on-surface-variant mt-1">{t('overview')}</p>
+          {currentDate && (
+            <div className="flex items-center gap-2 mt-2">
+              <span className="text-[#d4a853] text-lg">📅</span>
+              <span className="text-[#1a1a1a] font-bold">{currentDate}</span>
+            </div>
+          )}
+          <p className="text-[#6b7280] mt-1 font-medium">{t('overview')}</p>
         </div>
         <Link
           href="/recommend"
           id="dashboard-predict-btn"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#a3f69c] text-black font-bold hover:bg-[#88d982] transition-all shadow-sm"
+          className="gradient-btn inline-flex items-center gap-2 px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 font-bold"
         >
           🌾 {t('newPrediction')}
         </Link>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 delay-100">
         {statsCards.map((card, i) => (
-          <div key={i} className="bg-white rounded-2xl p-5 border shadow-sm" style={card.style}>
+          <div key={i} className="premium-card elevated-card p-5">
             <div className="flex items-start justify-between mb-3">
-              <p className="text-on-surface-variant text-sm font-semibold">{card.label}</p>
-              <span className="text-2xl">{card.icon}</span>
+              <p className="text-[#6b7280] text-xs font-semibold uppercase tracking-wider">{card.label}</p>
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xl ${card.iconBg}`}>
+                {card.icon}
+              </div>
             </div>
-            <p className="text-2xl font-black text-on-surface capitalize truncate">{card.value}</p>
+            <p className="text-3xl font-extrabold text-[#1a1a1a] capitalize truncate">{card.value}</p>
           </div>
         ))}
       </div>
 
       {/* Charts */}
       {allPredictions.length > 0 && (
-        <DashboardCharts predictions={allPredictions} cropFreq={cropFreq} />
+        <div className="delay-200">
+          <DashboardCharts predictions={allPredictions} cropFreq={cropFreq} />
+        </div>
       )}
 
       {/* Recent Predictions */}
-      <div className="bg-white rounded-2xl border border-outline-variant/40 shadow-sm">
-        <div className="p-6 border-b border-outline-variant/30 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-on-surface">{t('recentPredictions')}</h2>
-          <Link href="/history" className="text-primary hover:underline text-sm font-semibold transition-colors">
+      <div className="premium-card overflow-hidden delay-300">
+        <div className="p-6 border-b border-stone-200/60 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-[#1a1a1a]">{t('recentPredictions')}</h2>
+          <Link href="/history" className="text-[#1a6b3c] hover:underline text-sm font-semibold transition-colors">
             {t('viewAll')}
           </Link>
         </div>
 
         {recentPredictions.length === 0 ? (
           <div className="p-12 text-center">
-            <div className="text-5xl mb-4">🌱</div>
-            <h3 className="text-on-surface font-bold mb-2">{t('noPredictions')}</h3>
-            <p className="text-on-surface-variant text-sm mb-6">{t('overview')}</p>
-            <Link href="/recommend" className="px-6 py-3 rounded-xl bg-[#a3f69c] text-black font-bold hover:bg-[#88d982] transition-all inline-block shadow-sm">
+            <div className="text-5xl mb-4 text-[#c8965c] animate-pulse-gold">🌱</div>
+            <h3 className="text-[#1a1a1a] font-bold mb-2">{t('noPredictions')}</h3>
+            <p className="text-[#6b7280] text-sm font-medium mb-6">{t('overview')}</p>
+            <Link href="/recommend" className="gradient-btn px-6 py-3 rounded-xl transition-all inline-block shadow-md hover:shadow-lg hover:-translate-y-0.5 font-bold">
               {t('newPrediction')}
             </Link>
           </div>
         ) : (
-          <div className="divide-y divide-outline-variant/20">
+          <div className="divide-y divide-stone-200/60">
             {recentPredictions.map((pred) => {
               const cropInfo = getCropById(pred.predicted_crop)
-              const cropColor = cropInfo?.color || '#22c55e'
+              const cropColor = cropInfo?.color || '#1a6b3c'
               return (
-                <div key={pred.id} className="p-4 flex items-center justify-between hover:bg-surface-container-low/30 transition-colors">
+                <div key={pred.id} 
+                     className="p-4 flex items-center justify-between hover:bg-stone-50 transition-colors border-l-4"
+                     style={{ borderLeftColor: cropColor }}>
                   <div className="flex items-center gap-4">
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center text-xl border"
@@ -178,15 +180,15 @@ export default function DashboardPage() {
                       {getCropEmoji(pred.predicted_crop)}
                     </div>
                     <div>
-                      <p className="text-on-surface font-semibold capitalize">{pred.predicted_crop}</p>
-                      <p className="text-on-surface-variant/60 text-xs">{formatDate(pred.created_at)}</p>
+                      <p className="text-[#1a1a1a] font-semibold capitalize">{pred.predicted_crop}</p>
+                      <p className="text-[#6b7280] text-xs font-medium">{formatDate(pred.created_at)}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
                     {pred.confidence && (
-                      <span className="text-primary text-sm font-mono font-bold">{pred.confidence.toFixed(1)}%</span>
+                      <span className="text-[#1a6b3c] text-sm font-mono font-bold">{pred.confidence.toFixed(1)}%</span>
                     )}
-                    <span className="text-xs text-on-surface-variant/70 hidden sm:block font-medium">
+                    <span className="text-xs text-[#6b7280] hidden sm:block font-medium">
                       N:{pred.nitrogen} P:{pred.phosphorus} K:{pred.potassium}
                     </span>
                   </div>

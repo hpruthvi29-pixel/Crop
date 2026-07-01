@@ -37,7 +37,7 @@ export default function MobileDashboardNav() {
     <div className="relative z-50 lg:hidden" ref={navRef}>
       <button 
         onClick={() => setOpen(!open)} 
-        className="p-2 -mr-2 text-primary hover:bg-primary/5 rounded-lg transition-colors"
+        className="p-2 -mr-2 text-[#1a6b3c] hover:bg-[#1a6b3c]/5 rounded-lg transition-colors"
       >
         {open ? (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
@@ -47,7 +47,7 @@ export default function MobileDashboardNav() {
       </button>
 
       {open && (
-        <div className="absolute top-12 right-0 w-64 bg-white border border-outline-variant/30 shadow-2xl rounded-2xl p-3 space-y-1 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute top-12 right-0 w-64 bg-[#faf8f4]/95 backdrop-blur-xl rounded-2xl shadow-xl border border-stone-200/60 p-3 space-y-1 animate-fade-in-up duration-200">
           {SIDEBAR_LINKS.map(link => {
             const isActive = pathname === link.href || (link.href !== '/dashboard' && pathname.startsWith(link.href))
             return (
@@ -56,14 +56,17 @@ export default function MobileDashboardNav() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all',
+                  'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all relative',
                   isActive
-                    ? 'bg-primary-container/20 text-primary font-bold'
-                    : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-low'
+                    ? 'bg-[#1a6b3c]/8 text-[#1a6b3c] font-bold border-l-[3px] border-[#1a6b3c]'
+                    : 'text-stone-600 hover:text-[#1a6b3c] hover:bg-[#1a6b3c]/5'
                 )}
               >
                 <span className="text-base">{link.icon}</span>
                 {t(link.labelKey)}
+                {isActive && (
+                  <span className="absolute right-4 w-1.5 h-1.5 rounded-full bg-[#d4a853]"></span>
+                )}
               </Link>
             )
           })}

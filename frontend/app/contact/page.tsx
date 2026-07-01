@@ -42,34 +42,40 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3faff] flex flex-col font-sans text-on-surface">
+    <div className="min-h-screen bg-[#faf8f4] flex flex-col font-sans text-[#1a1a1a]">
       <Navbar />
 
       <main className="flex-grow pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto space-y-16">
           
           {/* Header */}
-          <div className="text-center">
-            <span className="text-xs font-bold text-primary tracking-widest uppercase">Contact & Support</span>
-            <h1 className="text-4xl sm:text-5xl font-black text-on-surface mt-3 mb-4">Get in Touch</h1>
-            <p className="text-on-surface-variant text-base max-w-2xl mx-auto">
+          <div className="text-center animate-fade-in-up">
+            <span className="text-xs font-bold text-[#c8965c] tracking-widest uppercase flex items-center justify-center gap-2 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c8965c] animate-pulse"></span>
+              Contact & Support
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#1a1a1a] mb-6 tracking-tight">Get in Touch</h1>
+            <p className="text-[#6b7280] text-lg max-w-2xl mx-auto font-medium leading-relaxed">
               Have questions about the crop recommendation system or need assistance? We are here to help.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left animate-fade-in-up delay-100">
             
             {/* Contact Form */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-outline-variant/40 shadow-sm relative overflow-hidden">
-              <h2 className="text-xl font-extrabold text-on-surface mb-6">Send us a Message</h2>
+            <div className="premium-card p-8 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e]"></div>
+              <h2 className="text-2xl font-bold text-[#1a1a1a] mb-8 flex items-center gap-2">
+                <span className="bg-[#1a6b3c]/10 text-[#1a6b3c] p-1.5 rounded-lg text-lg">✉️</span> Send a Message
+              </h2>
               {submitted ? (
-                <div className="text-center py-12">
+                <div className="text-center py-16 bg-[#faf8f4] rounded-2xl border border-stone-200/60 shadow-inner">
                   <div className="text-5xl mb-4">✅</div>
-                  <h3 className="text-on-surface font-bold mb-2">Message Sent!</h3>
-                  <p className="text-on-surface-variant text-xs">Thank you for contacting us. We will get back to you soon.</p>
+                  <h3 className="text-[#1a1a1a] font-bold text-xl mb-2">Message Sent!</h3>
+                  <p className="text-[#6b7280] text-sm font-medium">Thank you for contacting us. We will get back to you soon.</p>
                   <button 
                     onClick={() => { setForm({ name: '', email: '', subject: '', message: '' }); setSubmitted(false) }}
-                    className="mt-6 text-primary hover:underline text-xs font-bold"
+                    className="mt-6 text-[#1a6b3c] hover:text-[#2d8f5e] hover:underline text-sm font-bold transition-colors"
                   >
                     Send another message
                   </button>
@@ -77,7 +83,7 @@ export default function ContactPage() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-xs font-semibold text-on-surface mb-2">Name</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#6b7280] mb-2">Name</label>
                     <input
                       id="contact-name"
                       type="text"
@@ -85,11 +91,11 @@ export default function ContactPage() {
                       onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                       required
                       placeholder="Your Name"
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-outline-variant text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#faf8f4] border border-stone-200 text-[#1a1a1a] placeholder-[#6b7280]/60 focus:outline-none focus:border-[#1a6b3c] focus:ring-2 focus:ring-[#1a6b3c]/20 transition-all text-sm font-medium"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-on-surface mb-2">Email</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#6b7280] mb-2">Email</label>
                     <input
                       id="contact-email"
                       type="email"
@@ -97,11 +103,11 @@ export default function ContactPage() {
                       onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                       required
                       placeholder="you@example.com"
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-outline-variant text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#faf8f4] border border-stone-200 text-[#1a1a1a] placeholder-[#6b7280]/60 focus:outline-none focus:border-[#1a6b3c] focus:ring-2 focus:ring-[#1a6b3c]/20 transition-all text-sm font-medium"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-on-surface mb-2">Subject</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#6b7280] mb-2">Subject</label>
                     <input
                       id="contact-subject"
                       type="text"
@@ -109,28 +115,36 @@ export default function ContactPage() {
                       onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
                       required
                       placeholder="How can we help?"
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-outline-variant text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#faf8f4] border border-stone-200 text-[#1a1a1a] placeholder-[#6b7280]/60 focus:outline-none focus:border-[#1a6b3c] focus:ring-2 focus:ring-[#1a6b3c]/20 transition-all text-sm font-medium"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-on-surface mb-2">Message</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#6b7280] mb-2">Message</label>
                     <textarea
                       id="contact-message"
-                      rows={4}
+                      rows={5}
                       value={form.message}
                       onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                       required
                       placeholder="Your message details..."
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-outline-variant text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none text-sm"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#faf8f4] border border-stone-200 text-[#1a1a1a] placeholder-[#6b7280]/60 focus:outline-none focus:border-[#1a6b3c] focus:ring-2 focus:ring-[#1a6b3c]/20 transition-all resize-none text-sm font-medium"
                     />
                   </div>
                   <button
                     id="contact-submit"
                     type="submit"
                     disabled={loading}
-                    className="w-full h-12 rounded-xl bg-[#a3f69c] text-black font-bold text-sm hover:bg-[#88d982] transition-all shadow-sm disabled:opacity-50 flex items-center justify-center"
+                    className="gradient-btn w-full h-14 mt-4"
                   >
-                    {loading ? 'Sending...' : 'Send Message'}
+                    {loading ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <svg className="animate-spin w-5 h-5 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : 'Send Message →'}
                   </button>
                 </form>
               )}
@@ -138,12 +152,17 @@ export default function ContactPage() {
  
             {/* FAQs */}
             <div className="space-y-6">
-              <h2 className="text-xl font-extrabold text-on-surface mb-2">Frequently Asked Questions</h2>
+              <h2 className="text-2xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-2">
+                <span className="bg-[#c8965c]/10 text-[#c8965c] p-1.5 rounded-lg text-lg">❓</span> Frequently Asked Questions
+              </h2>
               <div className="space-y-4">
                 {FAQS.map((faq, i) => (
-                  <div key={i} className="bg-white rounded-xl border border-outline-variant/40 p-5 shadow-sm">
-                    <h3 className="text-on-surface font-extrabold text-xs mb-2">{faq.question}</h3>
-                    <p className="text-on-surface-variant text-xs leading-relaxed">{faq.answer}</p>
+                  <div key={i} className="bg-white/80 backdrop-blur-sm rounded-xl border border-stone-200/60 p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-[#c8965c]/40 hover:shadow-md transition-all group">
+                    <h3 className="text-[#1a1a1a] font-bold text-sm mb-3 flex items-start gap-2">
+                      <span className="text-[#c8965c] opacity-0 group-hover:opacity-100 transition-opacity">►</span>
+                      {faq.question}
+                    </h3>
+                    <p className="text-[#6b7280] text-sm leading-relaxed font-medium pl-6">{faq.answer}</p>
                   </div>
                 ))}
               </div>

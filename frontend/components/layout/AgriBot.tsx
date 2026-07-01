@@ -131,21 +131,21 @@ interface Message {
 function RenderMessage({ text }: { text: string }) {
   const lines = text.split('\n')
   return (
-    <div className="space-y-1 text-xs leading-relaxed">
+    <div className="space-y-1 text-xs leading-relaxed font-medium">
       {lines.map((line, i) => {
         if (line.startsWith('**') && line.endsWith('**')) {
-          return <p key={i} className="font-extrabold text-on-surface">{line.replace(/\*\*/g, '')}</p>
+          return <p key={i} className="font-extrabold text-[#1a1a1a]">{line.replace(/\*\*/g, '')}</p>
         }
         if (line.startsWith('**') && line.includes('**')) {
           const parts = line.split('**')
           return (
             <p key={i}>
-              {parts.map((p, j) => j % 2 === 1 ? <strong key={j} className="text-on-surface">{p}</strong> : <span key={j}>{p}</span>)}
+              {parts.map((p, j) => j % 2 === 1 ? <strong key={j} className="text-[#1a1a1a]">{p}</strong> : <span key={j}>{p}</span>)}
             </p>
           )
         }
         if (line.startsWith('•') || line.startsWith('-')) {
-          return <p key={i} className="flex gap-1.5 items-start"><span className="mt-0.5">•</span><span>{line.replace(/^[•-]\s*/, '')}</span></p>
+          return <p key={i} className="flex gap-1.5 items-start"><span className="mt-0.5 text-[#1a6b3c]">•</span><span>{line.replace(/^[•-]\s*/, '')}</span></p>
         }
         if (line.startsWith('🌾') || line.startsWith('🧪') || line.startsWith('🌡') || line.startsWith('🔬') || line.startsWith('🌧') || line.startsWith('🪨') || line.startsWith('📅') || line.startsWith('🌿') || line.startsWith('🟢') || line.startsWith('🔵') || line.startsWith('🟡') || line.startsWith('🛡') || line.startsWith('💧') || line.startsWith('🍎') || line.startsWith('☀') || line.startsWith('❄') || line.startsWith('🌤')) {
           return <p key={i} className="flex gap-1.5 items-start">{line}</p>
@@ -236,10 +236,10 @@ export default function AgriBot() {
         id="agribot-toggle"
         onClick={() => setOpen(o => !o)}
         className={cn(
-          'fixed bottom-6 right-6 z-[9999] w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 select-none',
+          'fixed bottom-6 right-6 z-[9999] w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 select-none border-2 border-white',
           open
-            ? 'bg-gray-700 text-white rotate-180 scale-90'
-            : 'bg-[#0d631b] text-white hover:scale-110 hover:shadow-2xl'
+            ? 'bg-stone-800 text-white rotate-180 scale-90'
+            : 'bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e] text-white hover:scale-110 hover:shadow-2xl'
         )}
         title="AgriPrecise Assistant"
       >
@@ -248,32 +248,32 @@ export default function AgriBot() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <span className="text-2xl">🌾</span>
+          <span className="text-2xl drop-shadow-md">🌾</span>
         )}
         {/* Notification dot */}
         {!open && (
-          <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#a3f69c] rounded-full border-2 border-white animate-pulse" />
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#d4a853] rounded-full border-2 border-white animate-pulse" />
         )}
       </button>
 
       {/* Chat Panel */}
       {open && (
-        <div className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-[9998] sm:w-[390px] max-h-[580px] h-[75vh] sm:h-auto flex flex-col bg-white rounded-2xl shadow-2xl border border-outline-variant/30 overflow-hidden animate-in slide-in-from-bottom-4 fade-in duration-300">
+        <div className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-[9998] sm:w-[390px] max-h-[580px] h-[75vh] sm:h-auto flex flex-col bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-stone-200/60 overflow-hidden animate-in slide-in-from-bottom-4 fade-in duration-300">
           {/* Header */}
-          <div className="flex items-center gap-3 px-4 py-3 bg-[#0d631b] text-white">
-            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-lg flex-shrink-0">
+          <div className="flex items-center gap-3 px-5 py-4 bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e] text-white shadow-md z-10 relative">
+            <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-lg flex-shrink-0 backdrop-blur-sm border border-white/20 shadow-inner">
               🌾
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-extrabold text-sm truncate">{t('chatTitle')}</p>
-              <p className="text-white/70 text-[10px] flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#a3f69c] inline-block animate-pulse" />
+              <p className="font-extrabold text-sm truncate tracking-wide">{t('chatTitle')}</p>
+              <p className="text-white/80 text-[10px] flex items-center gap-1.5 mt-0.5 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#d4a853] inline-block animate-pulse" />
                 Online • Agronomy AI
               </p>
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors flex-shrink-0"
+              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors flex-shrink-0 backdrop-blur-sm"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
@@ -282,40 +282,42 @@ export default function AgriBot() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#f3faff] min-h-0" style={{ maxHeight: '380px' }}>
+          <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-[#faf8f4] min-h-0 relative" style={{ maxHeight: '380px' }}>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#c5bfb3_1px,transparent_1px)] bg-[size:24px_24px] opacity-20 pointer-events-none"></div>
+            
             {messages.map(msg => (
               <div
                 key={msg.id}
                 className={cn(
-                  'flex gap-2 items-end',
+                  'flex gap-2.5 items-end relative z-10',
                   msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'
                 )}
               >
                 {/* Avatar */}
                 <div className={cn(
-                  'w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-bold',
+                  'w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-sm font-bold shadow-sm',
                   msg.role === 'user'
-                    ? 'bg-[#0d631b] text-white'
-                    : 'bg-[#a3f69c] text-[#0d631b]'
+                    ? 'bg-[#1a6b3c] text-white'
+                    : 'bg-white border border-stone-200/60 text-[#1a6b3c]'
                 )}>
                   {msg.role === 'user' ? '👤' : '🌾'}
                 </div>
 
                 {/* Bubble */}
                 <div className={cn(
-                  'max-w-[80%] px-3 py-2.5 rounded-2xl',
+                  'max-w-[80%] px-4 py-3 rounded-2xl',
                   msg.role === 'user'
-                    ? 'bg-[#0d631b] text-white rounded-tr-md'
-                    : 'bg-white border border-outline-variant/30 text-on-surface rounded-tl-md shadow-sm'
+                    ? 'bg-gradient-to-br from-[#1a6b3c] to-[#2d8f5e] text-white rounded-tr-sm shadow-md'
+                    : 'bg-white border border-stone-200/60 text-[#6b7280] rounded-tl-sm shadow-[0_2px_12px_rgba(0,0,0,0.03)]'
                 )}>
                   {msg.role === 'assistant' ? (
                     <RenderMessage text={msg.content} />
                   ) : (
-                    <p className="text-xs leading-relaxed">{msg.content}</p>
+                    <p className="text-xs leading-relaxed font-medium">{msg.content}</p>
                   )}
                   <p className={cn(
-                    'text-[9px] mt-1 text-right',
-                    msg.role === 'user' ? 'text-white/60' : 'text-on-surface-variant/50'
+                    'text-[9px] mt-1.5 text-right font-bold',
+                    msg.role === 'user' ? 'text-white/60' : 'text-[#6b7280]/60'
                   )}>
                     {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>
@@ -325,13 +327,13 @@ export default function AgriBot() {
 
             {/* Typing indicator */}
             {isTyping && (
-              <div className="flex gap-2 items-end">
-                <div className="w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center bg-[#a3f69c] text-[#0d631b] text-sm">🌾</div>
-                <div className="bg-white border border-outline-variant/30 rounded-2xl rounded-tl-md px-4 py-3 shadow-sm">
-                  <div className="flex gap-1 items-center h-4">
-                    <span className="w-2 h-2 rounded-full bg-primary/40 animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-2 h-2 rounded-full bg-primary/40 animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-2 h-2 rounded-full bg-primary/40 animate-bounce" style={{ animationDelay: '300ms' }} />
+              <div className="flex gap-2.5 items-end relative z-10">
+                <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center bg-white border border-stone-200/60 text-[#1a6b3c] text-sm shadow-sm">🌾</div>
+                <div className="bg-white border border-stone-200/60 rounded-2xl rounded-tl-sm px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+                  <div className="flex gap-1.5 items-center h-4">
+                    <span className="w-2 h-2 rounded-full bg-[#1a6b3c]/40 animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-2 h-2 rounded-full bg-[#1a6b3c]/40 animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-2 h-2 rounded-full bg-[#1a6b3c]/40 animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               </div>
@@ -341,14 +343,16 @@ export default function AgriBot() {
 
           {/* Quick Replies */}
           {hasOnlyWelcome && !isTyping && (
-            <div className="px-4 py-2 border-t border-outline-variant/20 bg-white">
-              <p className="text-[9px] text-on-surface-variant/60 uppercase tracking-wider mb-2 font-bold">Suggestions</p>
-              <div className="flex flex-wrap gap-1.5">
+            <div className="px-5 py-3 border-t border-stone-200/60 bg-white">
+              <p className="text-[10px] text-[#6b7280] uppercase tracking-widest mb-2.5 font-bold flex items-center gap-2">
+                <span>✨</span> Suggestions
+              </p>
+              <div className="flex flex-wrap gap-2">
                 {quickReplies.map((q, i) => (
                   <button
                     key={i}
                     onClick={() => handleSend(q)}
-                    className="text-[10px] px-2.5 py-1.5 rounded-full bg-primary/8 border border-primary/20 text-primary font-semibold hover:bg-primary/15 transition-colors"
+                    className="text-[10px] px-3 py-1.5 rounded-full bg-[#faf8f4] border border-stone-200/80 text-[#1a1a1a] font-bold hover:bg-[#1a6b3c]/5 hover:border-[#1a6b3c]/30 hover:text-[#1a6b3c] transition-colors shadow-sm"
                   >
                     {q}
                   </button>
@@ -358,7 +362,7 @@ export default function AgriBot() {
           )}
 
           {/* Input */}
-          <div className="px-3 py-3 border-t border-outline-variant/20 bg-white flex items-center gap-2">
+          <div className="px-4 py-4 border-t border-stone-200/60 bg-white flex items-center gap-2.5">
             <input
               ref={inputRef}
               type="text"
@@ -366,14 +370,14 @@ export default function AgriBot() {
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={t('chatPlaceholder')}
-              className="flex-1 min-w-0 px-3 py-2.5 rounded-xl bg-surface text-on-surface placeholder-on-surface-variant/40 border border-outline-variant/30 focus:outline-none focus:border-primary text-xs transition-all"
+              className="flex-1 min-w-0 px-4 py-3 rounded-xl bg-[#faf8f4] text-[#1a1a1a] placeholder-[#6b7280]/50 border border-stone-200/80 focus:outline-none focus:border-[#1a6b3c] focus:ring-2 focus:ring-[#1a6b3c]/20 text-xs transition-all font-medium"
             />
             <button
               onClick={() => handleSend()}
               disabled={!input.trim() || isTyping}
-              className="w-9 h-9 rounded-xl bg-[#0d631b] text-white flex items-center justify-center flex-shrink-0 hover:bg-[#0a5218] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-10 h-10 rounded-xl gradient-btn flex items-center justify-center flex-shrink-0 disabled:opacity-40 disabled:cursor-not-allowed p-0 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>
             </button>

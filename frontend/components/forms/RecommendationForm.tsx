@@ -135,44 +135,44 @@ export default function RecommendationForm() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-2xl border border-outline-variant/40 overflow-hidden shadow-sm">
-        <div className="bg-surface/30 border-b border-outline-variant/30 p-6 flex justify-between items-center">
+      <div className="premium-card p-6 sm:p-8 animate-fade-in-up">
+        <div className="border-b border-stone-200/60 pb-6 mb-6 flex justify-between items-center">
           <div>
-            <h2 className="text-xl font-extrabold text-on-surface">{t('macronutrientProfile')}</h2>
-            <p className="text-on-surface-variant text-xs mt-1">{t('macronutrientDesc')}</p>
+            <h2 className="text-xl font-bold text-[#1a1a1a]">{t('macronutrientProfile')}</h2>
+            <p className="text-[#6b7280] text-xs mt-1">{t('macronutrientDesc')}</p>
           </div>
-          <div className="text-2xl text-primary bg-primary-container/10 p-2 rounded-full">
+          <div className="text-2xl text-[#1a6b3c] bg-[#faf8f4] p-3 rounded-full shadow-sm border border-stone-200/50">
             🌱
           </div>
         </div>
 
         {apiError && (
-          <div className="mx-6 mt-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-3">
+          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-[#dc4a3f]/20 text-[#dc4a3f] text-sm flex items-center gap-3">
             <span className="text-lg">⚠️</span>
             {apiError}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {FIELDS.map(field => (
-            <div key={field.key}>
-              <div className="flex items-center justify-between mb-2">
-                <label className="flex items-center gap-2 text-xs font-bold text-on-surface">
-                  <span>{field.icon}</span>
+            <div key={field.key} className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
+                  <span className="text-base">{field.icon}</span>
                   {t(field.labelKey)}
-                  {field.unit && <span className="text-on-surface-variant/60 text-[10px]">({field.unit})</span>}
+                  {field.unit && <span className="normal-case opacity-75">({field.unit})</span>}
                 </label>
                 <button
                   type="button"
                   onMouseEnter={() => setTooltip(field.key)}
                   onMouseLeave={() => setTooltip(null)}
-                  className="text-on-surface-variant/50 hover:text-primary transition-colors relative"
+                  className="text-[#6b7280] hover:text-[#1a6b3c] transition-colors relative"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   {tooltip === field.key && (
-                    <div className="absolute right-0 bottom-6 w-56 p-3 rounded-xl bg-white border border-outline-variant text-on-surface text-xs z-50 shadow-lg leading-relaxed text-left">
+                    <div className="absolute right-0 bottom-6 w-56 p-3 rounded-xl bg-white border border-stone-200/60 text-[#1a1a1a] text-xs z-50 shadow-lg leading-relaxed text-left normal-case tracking-normal font-medium">
                       {field.tooltip}
                     </div>
                   )}
@@ -191,14 +191,14 @@ export default function RecommendationForm() {
                   setForm(f => ({ ...f, [field.key]: val }));
                   setErrors(er => ({ ...er, [field.key]: undefined }));
                 }}
-                className={`w-full px-4 py-3 rounded-xl bg-white border text-on-surface placeholder-on-surface-variant/40 focus:outline-none transition-all text-sm ${
+                className={`w-full px-4 py-3 rounded-xl border focus:outline-none transition-all text-sm bg-white/50 ${
                   errors[field.key]
-                    ? 'border-red-500/50 focus:ring-1 focus:ring-red-500/30'
-                    : 'border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary'
+                    ? 'border-[#dc4a3f]/50 focus:border-[#dc4a3f] focus:ring-1 focus:ring-[#dc4a3f]/20'
+                    : 'border-stone-200 focus:border-[#1a6b3c] focus:ring-1 focus:ring-[#1a6b3c]/20'
                 }`}
               />
               {errors[field.key] && (
-                <p className="text-red-600 text-xs mt-1 font-semibold">{errors[field.key]}</p>
+                <p className="text-[#dc4a3f] text-xs mt-1.5 font-medium">{errors[field.key]}</p>
               )}
             </div>
           ))}
@@ -207,17 +207,24 @@ export default function RecommendationForm() {
             id="recommend-submit"
             type="submit"
             disabled={loading}
-            className="w-full h-12 rounded-xl bg-[#a3f69c] text-black font-bold text-sm hover:bg-[#88d982] transition-all shadow-sm mt-6 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+            className="gradient-btn w-full h-14 text-lg rounded-xl flex justify-center items-center gap-2 mt-8 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
-              <span className="flex items-center justify-center gap-3">
-                <svg className="animate-spin w-5 h-5 text-black" fill="none" viewBox="0 0 24 24">
+              <>
+                <svg className="animate-spin w-5 h-5 text-white" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>
                 {t('analyzingSoil')}
-              </span>
-            ) : t('getRecommendation')}
+              </>
+            ) : (
+              <>
+                {t('getRecommendation')}
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </>
+            )}
           </button>
         </form>
       </div>

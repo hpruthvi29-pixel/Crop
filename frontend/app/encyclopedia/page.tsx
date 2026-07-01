@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -11,6 +11,11 @@ export default function EncyclopediaPage() {
   const { t } = useLanguage()
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<CropCategory>('All')
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const filtered = CROPS.filter(crop => {
     const matchSearch = crop.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -19,48 +24,55 @@ export default function EncyclopediaPage() {
     return matchSearch && matchCat
   })
 
+  // Premium Earth Tone Category Badges
   const CATEGORY_COLORS: Record<string, string> = {
-    Cereal: 'bg-yellow-50 text-yellow-700 border-yellow-200/50',
-    Pulse: 'bg-green-50 text-green-700 border-green-200/50',
-    Fruit: 'bg-pink-50 text-pink-700 border-pink-200/50',
-    'Cash Crop': 'bg-purple-50 text-purple-700 border-purple-200/50',
-    Beverage: 'bg-orange-50 text-orange-700 border-orange-200/50',
+    Cereal: 'bg-[#d4a853]/10 text-[#d4a853] border-[#d4a853]/30',
+    Pulse: 'bg-[#1a6b3c]/10 text-[#1a6b3c] border-[#1a6b3c]/30',
+    Fruit: 'bg-[#c8965c]/10 text-[#c8965c] border-[#c8965c]/30',
+    'Cash Crop': 'bg-[#8b4513]/10 text-[#8b4513] border-[#8b4513]/30',
+    Beverage: 'bg-[#2d8f5e]/10 text-[#2d8f5e] border-[#2d8f5e]/30',
   }
 
+  if (!isMounted) return null
+
   return (
-    <div className="min-h-screen bg-[#f3faff] flex flex-col font-sans text-on-surface">
+    <div className="min-h-screen bg-[#faf8f4] flex flex-col font-sans text-[#1a1a1a]">
       <Navbar />
 
-      <main className="flex-grow pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-8">
-          <div>
-            <span className="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">{t('crops')}</span>
-            <h1 className="text-3xl font-black text-on-surface mt-1">{t('browseEncyclopedia')}</h1>
-            <p className="text-on-surface-variant text-sm mt-1">Browse all 22 crops supported by our recommendation system</p>
+      <main className="flex-grow pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <div className="animate-fade-in-up">
+            <span className="text-xs font-bold text-[#c8965c] uppercase tracking-widest flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c8965c] animate-pulse"></span>
+              {t('crops')}
+            </span>
+            <h1 className="text-4xl font-extrabold text-[#1a1a1a] mt-2 mb-3 tracking-tight">{t('browseEncyclopedia')}</h1>
+            <p className="text-[#6b7280] text-sm max-w-2xl font-medium">Browse our comprehensive database of 22 major crops, detailing their optimal soil requirements, climate preferences, and expected harvest timelines.</p>
           </div>
 
           {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1 max-w-md border border-outline-variant/60 rounded-xl overflow-hidden shadow-sm">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm">🔍</span>
+          <div className="flex flex-col md:flex-row gap-5 animate-fade-in-up delay-100">
+            <div className="relative flex-1 max-w-md border border-stone-200/80 rounded-xl overflow-hidden shadow-sm bg-white focus-within:ring-2 focus-within:ring-[#1a6b3c]/20 focus-within:border-[#1a6b3c] transition-all">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg">🔍</span>
               <input
                 id="encyclopedia-search"
                 type="text"
-                placeholder="Search crops..."
+                placeholder="Search crops by name or scientific name..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white text-on-surface placeholder-on-surface-variant/40 focus:outline-none text-sm"
+                className="w-full pl-12 pr-4 py-3.5 bg-transparent text-[#1a1a1a] placeholder-[#6b7280] focus:outline-none text-sm font-medium"
               />
             </div>
-            <div className="flex flex-wrap gap-2">
+            
+            <div className="flex flex-wrap gap-2.5 items-center">
               {CROP_CATEGORIES.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
+                  className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm ${
                     category === cat
-                      ? 'bg-primary/10 text-primary border-primary/20'
-                      : 'bg-white text-on-surface-variant border-outline-variant/40 hover:border-primary/30 hover:text-primary'
+                      ? 'bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e] text-white border-transparent shadow-md'
+                      : 'bg-white text-[#6b7280] border border-stone-200/80 hover:border-[#1a6b3c]/40 hover:text-[#1a6b3c]'
                   }`}
                 >
                   {cat}
@@ -69,59 +81,73 @@ export default function EncyclopediaPage() {
             </div>
           </div>
 
-          {/* Count */}
-          <p className="text-on-surface-variant/60 text-xs font-semibold">{filtered.length} crops found</p>
-
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 text-left">
-            {filtered.map(crop => (
-              <Link
-                key={crop.id}
-                href={`/encyclopedia/${crop.id}`}
-                id={`crop-card-${crop.id}`}
-                className="bg-white rounded-2xl border border-outline-variant/40 p-5 shadow-sm hover:shadow-md transition-all duration-300 group block hover:border-primary"
-              >
-                {/* Crop icon */}
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
-                  🌾
-                </div>
-
-                {/* Category badge */}
-                <span className={`text-[10px] px-2.5 py-0.5 rounded-full border font-bold ${CATEGORY_COLORS[crop.category] || 'bg-surface text-on-surface-variant border-outline-variant/30'}`}>
-                  {crop.category}
-                </span>
-
-                <h3 className="text-on-surface font-extrabold text-md mt-3 mb-0.5 group-hover:text-primary transition-colors">
-                  {crop.name}
-                </h3>
-                <p className="text-on-surface-variant/60 text-xs italic mb-3">{crop.scientificName}</p>
-                <p className="text-on-surface-variant text-xs leading-relaxed line-clamp-2">{crop.description}</p>
-
-                <div className="mt-4 pt-4 border-t border-outline-variant/10 grid grid-cols-2 gap-2 text-[10px]">
-                  <div>
-                    <p className="text-on-surface-variant/60 font-semibold uppercase">Season</p>
-                    <p className="text-on-surface font-bold mt-0.5 truncate">{crop.season.split('(')[0].trim()}</p>
-                  </div>
-                  <div>
-                    <p className="text-on-surface-variant/60 font-semibold uppercase">pH Range</p>
-                    <p className="text-on-surface font-bold mt-0.5">{crop.phRange}</p>
-                  </div>
-                </div>
-
-                <div className="mt-4 text-primary text-xs font-bold group-hover:underline flex items-center gap-0.5">
-                  View details ➔
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {filtered.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-5xl mb-4">🔍</div>
-              <p className="text-on-surface font-bold mb-2">No crops found</p>
-              <p className="text-on-surface-variant text-sm">Try a different search or filter</p>
+          {/* Grid Container */}
+          <div className="animate-fade-in-up delay-200">
+            <div className="flex justify-between items-end mb-6 border-b border-stone-200/60 pb-3">
+              <h2 className="text-lg font-bold text-[#1a1a1a]">{category === 'All' ? 'All Crops' : `${category}s`}</h2>
+              <p className="text-[#6b7280] text-xs font-bold uppercase tracking-wider">{filtered.length} crops found</p>
             </div>
-          )}
+
+            {/* Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 text-left">
+              {filtered.map((crop, index) => (
+                <Link
+                  key={crop.id}
+                  href={`/encyclopedia/${crop.id}`}
+                  id={`crop-card-${crop.id}`}
+                  className="bg-white/80 backdrop-blur-sm rounded-2xl border border-stone-200/80 p-6 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgba(26,107,60,0.12)] hover:-translate-y-1 hover:border-[#1a6b3c]/30 transition-all duration-300 group block relative overflow-hidden"
+                  style={{ animationDelay: `${(index % 8) * 50}ms` }}
+                >
+                  {/* Decorative corner gradient */}
+                  <div className="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-bl from-[#f0ece4] to-transparent rounded-full opacity-50 group-hover:from-[#e8f5e9] transition-colors"></div>
+
+                  <div className="flex justify-between items-start mb-5 relative z-10">
+                    {/* Crop icon */}
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#faf8f4] to-[#f0ece4] border border-stone-200/60 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-inner">
+                      🌾
+                    </div>
+                    {/* Category badge */}
+                    <span className={`text-[10px] px-3 py-1 rounded-full border font-bold uppercase tracking-wider ${CATEGORY_COLORS[crop.category] || 'bg-[#faf8f4] text-[#6b7280] border-stone-200'}`}>
+                      {crop.category}
+                    </span>
+                  </div>
+
+                  <h3 className="text-[#1a1a1a] font-extrabold text-xl mt-2 mb-1 group-hover:text-[#1a6b3c] transition-colors">
+                    {crop.name}
+                  </h3>
+                  <p className="text-[#8b4513] text-xs italic mb-4 font-medium">{crop.scientificName}</p>
+                  
+                  <p className="text-[#6b7280] text-sm leading-relaxed line-clamp-2 font-medium h-10">
+                    {crop.description}
+                  </p>
+
+                  <div className="mt-5 pt-5 border-t border-stone-200/60 grid grid-cols-2 gap-3 text-xs">
+                    <div>
+                      <p className="text-[#6b7280] font-bold uppercase tracking-wider text-[10px] mb-1">Season</p>
+                      <p className="text-[#1a1a1a] font-bold truncate">{crop.season.split('(')[0].trim()}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#6b7280] font-bold uppercase tracking-wider text-[10px] mb-1">pH Range</p>
+                      <p className="text-[#1a1a1a] font-bold">{crop.phRange}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between text-[#1a6b3c] text-xs font-bold group-hover:translate-x-1 transition-transform">
+                    <span>View full details</span>
+                    <span>→</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {filtered.length === 0 && (
+              <div className="text-center py-20 bg-white/50 rounded-2xl border border-stone-200/60 border-dashed">
+                <div className="text-6xl mb-4 opacity-50">🔍</div>
+                <p className="text-[#1a1a1a] font-bold text-lg mb-2">No crops found</p>
+                <p className="text-[#6b7280] text-sm font-medium">Try adjusting your search term or selecting a different category.</p>
+              </div>
+            )}
+          </div>
         </div>
       </main>
 

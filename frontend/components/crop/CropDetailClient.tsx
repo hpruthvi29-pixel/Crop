@@ -28,14 +28,14 @@ export default function CropDetailClient({ crop }: CropDetailClientProps) {
   const { t } = useLanguage()
 
   const CATEGORY_COLORS: Record<string, string> = {
-    Cereal: 'border-t-yellow-400 text-yellow-700 bg-yellow-50/10',
-    Pulse: 'border-t-green-500 text-green-700 bg-green-50/10',
-    Fruit: 'border-t-pink-500 text-pink-700 bg-pink-50/10',
-    'Cash Crop': 'border-t-purple-500 text-purple-700 bg-purple-50/10',
-    Beverage: 'border-t-orange-500 text-orange-700 bg-orange-50/10',
+    Cereal: 'bg-[#d4a853]/10 text-[#d4a853] border-[#d4a853]/30',
+    Pulse: 'bg-[#1a6b3c]/10 text-[#1a6b3c] border-[#1a6b3c]/30',
+    Fruit: 'bg-[#c8965c]/10 text-[#c8965c] border-[#c8965c]/30',
+    'Cash Crop': 'bg-[#8b4513]/10 text-[#8b4513] border-[#8b4513]/30',
+    Beverage: 'bg-[#2d8f5e]/10 text-[#2d8f5e] border-[#2d8f5e]/30',
   }
 
-  const catStyle = CATEGORY_COLORS[crop.category] || 'border-t-primary text-primary bg-surface'
+  const catStyle = CATEGORY_COLORS[crop.category] || 'bg-[#1a6b3c]/10 text-[#1a6b3c] border-stone-200'
 
   const stats = [
     { labelKey: 'idealN', value: crop.idealNitrogen, icon: '🧪' },
@@ -50,53 +50,59 @@ export default function CropDetailClient({ crop }: CropDetailClientProps) {
   ]
 
   return (
-    <div className="min-h-screen bg-[#f3faff] flex flex-col font-sans text-on-surface">
+    <div className="min-h-screen bg-[#faf8f4] flex flex-col font-sans text-[#1a1a1a]">
       <Navbar />
 
       <main className="flex-grow pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
           {/* Back */}
-          <Link href="/encyclopedia" className="inline-flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-colors text-xs font-bold">
+          <Link href="/encyclopedia" className="inline-flex items-center gap-2 text-[#6b7280] hover:text-[#1a6b3c] transition-colors text-sm font-bold bg-white px-4 py-2 rounded-xl border border-stone-200 shadow-sm">
             ← {t('backToHome')}
           </Link>
 
           {/* Hero */}
-          <div className={`bg-white rounded-2xl border-t-4 border-x border-b border-outline-variant/40 shadow-sm p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-6 ${catStyle.split(' ').slice(-1)[0]}`}>
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-4xl shrink-0">
+          <div className="premium-card p-8 sm:p-10 flex flex-col sm:flex-row items-start gap-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#1a6b3c] to-[#2d8f5e]"></div>
+            
+            <div className="w-20 h-20 rounded-2xl bg-[#faf8f4] border border-stone-200 shadow-inner flex items-center justify-center text-5xl shrink-0 group-hover:scale-110 transition-transform">
               🌾
             </div>
+            
             <div className="flex-grow text-left">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant/60">{crop.category}</span>
-              <h1 className="text-3xl font-black text-on-surface mt-1 mb-1">{crop.name}</h1>
-              <p className="text-on-surface-variant/60 italic text-md">{crop.scientificName}</p>
-              <p className="text-on-surface-variant text-sm leading-relaxed mt-4 max-w-2xl">{crop.description}</p>
+              <span className={`text-[10px] px-3 py-1 rounded-full border font-bold uppercase tracking-wider ${catStyle}`}>
+                {crop.category}
+              </span>
+              <h1 className="text-4xl font-extrabold text-[#1a1a1a] mt-4 mb-1">{crop.name}</h1>
+              <p className="text-[#8b4513] italic text-md font-medium">{crop.scientificName}</p>
+              <p className="text-[#6b7280] text-sm leading-relaxed mt-5 max-w-2xl font-medium">{crop.description}</p>
             </div>
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
             {stats.map(item => (
-              <div key={item.labelKey} className="bg-white rounded-xl border border-outline-variant/40 p-5 shadow-sm">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-lg">{item.icon}</span>
-                  <p className="text-on-surface-variant/70 text-[10px] font-bold uppercase tracking-wider">{t(item.labelKey)}</p>
+              <div key={item.labelKey} className="bg-white/80 backdrop-blur-sm rounded-xl border border-stone-200/80 p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-md hover:border-[#c8965c]/40 transition-all group">
+                <div className="flex items-center gap-2.5 mb-3">
+                  <span className="text-xl group-hover:scale-110 transition-transform">{item.icon}</span>
+                  <p className="text-[#6b7280] text-[10px] font-bold uppercase tracking-wider">{t(item.labelKey)}</p>
                 </div>
-                <p className="text-on-surface font-extrabold text-sm">{item.value}</p>
+                <p className="text-[#1a1a1a] font-extrabold text-sm ml-8">{item.value}</p>
               </div>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="bg-white rounded-2xl border border-primary/30 p-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-left">
-              <h3 className="text-on-surface font-extrabold text-md">Is {crop.name} right for your farm?</h3>
-              <p className="text-on-surface-variant text-xs mt-1">Check with our AI model using your actual soil and climate data</p>
+          <div className="premium-card p-8 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
+            <div className="absolute -right-12 -top-12 w-48 h-48 bg-[#c8965c]/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="text-left relative z-10">
+              <h3 className="text-[#1a1a1a] font-extrabold text-lg">Is {crop.name} right for your farm?</h3>
+              <p className="text-[#6b7280] text-sm mt-1 font-medium">Check with our AI model using your actual soil and climate data</p>
             </div>
             <Link
               href="/recommend"
-              className="px-5 py-3 rounded-lg bg-[#a3f69c] text-black font-bold hover:bg-[#88d982] transition-all shadow-sm text-xs whitespace-nowrap"
+              className="gradient-btn px-6 py-3.5 whitespace-nowrap text-sm flex items-center gap-2 relative z-10"
             >
-              {t('getRecommendation')}
+              {t('getRecommendation')} →
             </Link>
           </div>
         </div>
